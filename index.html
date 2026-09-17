@@ -2,61 +2,34 @@
 <html lang="as">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>কলা কৰ্মী - Painting Show & Sale | Manuj Borah</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VENUS ART GALLERY TEOK - Manuj Borah</title>
 <style>
-*{box-sizing:border-box}body{font-family:system-ui, sans-serif;background:#fdf6e3;margin:0}
-.hero{background:linear-gradient(135deg,#a33d00,#ff6a00);color:white;padding:25px 15px;text-align:center}
-.hero h1{margin:0;font-size:32px}.hero p{margin:5px 0 0 0}
-.nav{display:flex;justify-content:center;gap:8px;padding:10px;background:white;position:sticky;top:0;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+*{box-sizing:border-box}
+body{font-family:system-ui;background:#fdf6e3;margin:0}
+.hero{background:linear-gradient(135deg,#6a11cb,#2575fc);color:#fff;padding:30px 15px;text-align:center}
+.hero h1{margin:0;font-size:32px;letter-spacing:1px}
+.nav{display:flex;justify-content:center;gap:8px;padding:10px;background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,.1)}
 .nav button{border:none;padding:10px 16px;border-radius:20px;font-weight:bold;background:#eee}
-.nav button.active{background:#a33d00;color:white}
-.card{background:white;margin:12px auto;max-width:900px;padding:15px;border-radius:18px;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.nav button.active{background:#6a11cb;color:#fff}
+.card{background:#fff;margin:12px auto;max-width:900px;padding:15px;border-radius:18px;box-shadow:0 4px 14px rgba(0,0,0,.12)}
 input{width:95%;padding:13px;margin:6px 0;border-radius:12px;border:1px solid #ddd;font-size:16px}
-.btn-up{background:#c0392b;color:white;width:96%;padding:14px;font-size:17px;border-radius:12px;border:none;font-weight:bold}
+.btn-up{background:#c0392b;color:#fff;width:96%;padding:14px;font-size:17px;border-radius:12px;border:none;font-weight:bold}
 .show-gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(min-width:700px){.show-gallery{grid-template-columns:1fr 1fr 1fr}}
-.show-item{background:white;border-radius:16px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.12);position:relative}
-.show-item img{width:100%;height:220px;object-fit:cover;cursor:pointer}
+.show-item{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.12);position:relative}
+.show-item img{width:100%;height:220px;object-fit:cover}
 .show-body{padding:10px}
-.price-tag{background:#0a8a00;color:white;padding:4px 10px;border-radius:20px;font-weight:800;font-size:14px;position:absolute;top:8px;left:8px}
-.buy-btn{background:#25D366;color:white;width:100%;padding:11px;border:none;border-radius:10px;font-weight:bold;margin-top:6px;font-size:14px}
-.small-btn{border:none;padding:7px 10px;border-radius:8px;font-size:12px;margin:2px;font-weight:bold}
-.like{background:#ffe4e4}.share{background:#fff3cd}.down{background:#e3f2fd}
-.lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);display:none;justify-content:center;align-items:center;z-index:99;flex-direction:column;padding:20px}
-.lightbox img{max-width:95%;max-height:75%;border-radius:12px}
-.lightbox p{color:white;margin-top:12px;text-align:center}
+.price-tag{background:#0a8a00;color:#fff;padding:4px 10px;border-radius:20px;font-weight:800;font-size:14px;position:absolute;top:8px;left:8px}
+.buy-btn{background:#25D366;color:#fff;width:100%;padding:11px;border:none;border-radius:10px;font-weight:bold;margin-top:6px}
 </style>
 </head>
 <body>
-
 <div class="hero">
-<h1>🎨 কলা কৰ্মী</h1>
+<h1>🎨 VENUS ART GALLERY</h1>
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;margin:5px 0">TEOK</p>
 <p><b>Manuj Kumar Borah</b><br>Teok, Jorhat - Assam | 📞 9101573700</p>
-<p style="font-size:13px;margin-top:8px;opacity:.9">আমাৰ Painting Show Gallery - চাওক, ভাল লাগিলে কিনক</p>
 </div>
 
 <div class="nav">
-<button class="active" onclick="filterArt('all',this)">সকলো</button>
-<button onclick="filterArt('new',this)">নতুন</button>
-<button onclick="filterArt('low',this)">₹500 ৰ তলত</button>
-<button onclick="filterArt('high',this)">₹1000+</button>
-</div>
-
-<div class="card">
-<h3>➕ আপোনাৰ Painting Show ৰ বাবে Upload কৰক</h3>
-<input id="an" placeholder="আপোনাৰ নাম - Manuj">
-<input id="at" placeholder="Painting ৰ নাম - যেনে Teok ৰ পথাৰ">
-<input id="ap" type="number" placeholder="বিক্ৰী দাম - যেনে 1500">
-<input id="af" type="file" accept="image/*" multiple>
-<button class="btn-up" onclick="uploadArt()">🖼️ Show Gallery ত যোগ কৰক</button>
-</div>
-
-<div class="card">
-<h3 id="countTitle">🖼️ Show Gallery - বিক্ৰী চলি আছে</h3>
-<div id="gallery" class="show-gallery"></div>
-<p id="empty" style="text-align:center">এতিয়াও Painting নাই - আপুনি প্ৰথম Show কৰক!</p>
-</div>
-
-<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-<img id="lbImg" src=""><p id="lbText"></p><p style="color:#ccc;font-size:12px">ব
+<button class="active" onclick="filterArt('all',this)">সকলো</
