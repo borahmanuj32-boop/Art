@@ -2,45 +2,89 @@
 <html lang="as">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>কলা কৰ্মী - Art | Manuj Borah</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>কলা কৰ্মী - Community Art Gallery</title>
 <style>
 body{font-family:system-ui;background:#fef9e7;margin:0;padding:10px;text-align:center}
-h1{color:#b94e00}
-.card{background:white;padding:15px;border-radius:15px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin:15px auto;max-width:500px}
-.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.gallery img{width:100%;border-radius:12px}
-button{background:#c0392b;color:white;border:none;padding:10px 15px;border-radius:8px;margin:5px}
+h1{color:#b94e00;margin:10px}
+.card{background:white;padding:15px;border-radius:15px;box-shadow:0 4px 12px rgba(0,0,0,0.15);margin:15px auto;max-width:600px}
+input,button{padding:12px;border-radius:10px;border:1px solid #ccc;margin:5px;font-size:16px}
+button{background:#c0392b;color:white;border:none;font-weight:bold}
+button:active{transform:scale(0.95)}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}
+.gallery div{position:relative}
+.gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,0.2)}
+.del{position:absolute;top:5px;right:5px;background:red;color:white;border-radius:50%;width:30px;height:30px;line-height:30px;padding:0}
+.nameTag{background:#fff3e0;padding:5px;border-radius:5px;font-weight:bold;margin-top:5px}
 </style>
 </head>
 <body>
-<h1>🎨 কলা কৰ্মী - Art</h1>
-<p><b>Manuj Kumar Borah | Teok, Jorhat, Assam</b></p>
+<h1>🎨 কলা কৰ্মী - Community Gallery</h1>
+<p><b>Manuj Kumar Borah | Teok, Jorhat</b><br>যিকোনোৱে নিজৰ Gallery বনাওক!</p>
+
 <div class="card">
-<h2>🖼️ মোৰ ছবি</h2>
-<div class="gallery">
-<img src="painting1.jpg">
-<img src="painting2.jpg">
+<h2>➕ নতুন Gallery বনাওক</h2>
+<input type="text" id="gName" placeholder="আপোনাৰ নাম / Gallery নাম লিখক">
+<input type="file" id="up" accept="image/*" multiple>
+<br>
+<button onclick="upload()">📸 Upload & Save</button>
+<button onclick="clearAll()" style="background:#555">🗑️ সকলো Delete</button>
 </div>
-<p>আপোনাৰ Painting বোৰ ইয়াত দেখা যাব</p>
-</div>
+
 <div class="card">
-<h2>📸 Photo Filter</h2>
-<input type="file" id="up" accept="image/*"><br><br>
-<canvas id="c"></canvas><br>
-<button onclick="f('grayscale(100%)')">Black White</button>
-<button onclick="f('sepia(100%)')">Sepia</button>
-<button onclick="f('none')">Original</button><br>
-<button onclick="d()" style="background:green">⬇️ Download</button>
+<h2>🖼️ সকলোৰে Photo Gallery</h2>
+<div id="showGallery" class="gallery"></div>
+<p id="emptyMsg">এতিয়াও কোনো ফটো নাই, আপুনি প্ৰথম Upload কৰক!</p>
 </div>
+
 <script>
-let I=new Image(),C=document.getElementById('c'),X=C.getContext('2d');
-document.getElementById('up').addEventListener('change',e=>{
-I.src=URL.createObjectURL(e.target.files[0]);
-I.onload=()=>{C.width=I.width;C.height=I.height;X.drawImage(I,0,0);}
-});
-function f(a){X.filter=a;X.drawImage(I,0,0,C.width,C.height);}
-function d(){let a=document.createElement('a');a.download='art.png';a.href=C.toDataURL();a.click();}
+let allPhotos = JSON.parse(localStorage.getItem('manujArtGallery') || '[]');
+
+function show(){
+  let box = document.getElementById('showGallery');
+  let msg = document.getElementById('emptyMsg');
+  box.innerHTML='';
+  if(allPhotos.length==0){ msg.style.display='block'; return; }
+  msg.style.display='none';
+  allPhotos.forEach((p,i)=>{
+    box.innerHTML+=`<div><img src="${p.img}"><div class="nameTag">${p.name}</div><button class="del" onclick="del(${i})">X</button></div>`;
+  });
+}
+
+function upload(){
+  let name = document.getElementById('gName').value || 'Anonymous Artist';
+  let files = document.getElementById('up').files;
+  if(files.length==0){ alert('ফটো Select কৰক দাদা!'); return; }
+  
+  for(let file of files){
+    let reader = new FileReader();
+    reader.onload = function(e){
+      allPhotos.unshift({name:name, img:e.target.result});
+      localStorage.setItem('manujArtGallery', JSON.stringify(allPhotos));
+      show();
+    }
+    reader.readAsDataURL(file);
+  }
+  alert('Upload হৈছে! ✅');
+}
+
+function del(i){
+  if(confirm('Delete কৰিব নে?')){
+    allPhotos.splice(i,1);
+    localStorage.setItem('manujArtGallery', JSON.stringify(allPhotos));
+    show();
+  }
+}
+
+function clearAll(){
+  if(confirm('সকলো ফটো Delete হব! খাটাং নে?')){
+    allPhotos=[];
+    localStorage.removeItem('manujArtGallery');
+    show();
+  }
+}
+
+show();
 </script>
 </body>
-</html>
+  </html>
