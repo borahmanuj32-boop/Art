@@ -3,94 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>কলা কৰ্মী - Manuj Art Store</title>
+<title>কলা কৰ্মী - Painting Show & Sale | Manuj Borah</title>
 <style>
-body{font-family:system-ui;background:#fff8e7;margin:0;padding:10px}
-h1{color:#a33d00;text-align:center;margin-bottom:0}
-.card{background:white;padding:15px;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.15);margin:12px auto;max-width:720px}
-input{width:93%;padding:12px;margin:6px 0;border-radius:10px;border:1px solid #ccc;font-size:16px}
-button{padding:10px 12px;border-radius:10px;border:none;font-weight:bold;margin:3px;cursor:pointer}
-.btn-up{background:#c0392b;color:white;width:96%;font-size:17px;padding:14px}
-.gallery{display:grid;grid-template-columns:1fr;gap:16px}
-@media(min-width:600px){.gallery{grid-template-columns:1fr 1fr}}
-.art{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #eee}
-.art img{width:100%;height:300px;object-fit:cover}
-.art-body{padding:12px}
-.price{color:#0a8a00;font-weight:800;font-size:22px}
-.buy{background:#25D366;color:white;width:100%;font-size:16px;padding:14px;margin-top:8px;border-radius:12px}
-.s{font-size:13px;padding:8px 12px}
-.like{background:#ffe4e4}.down{background:#e3f2fd}.share{background:#fff3cd;color:#000}
+*{box-sizing:border-box}body{font-family:system-ui, sans-serif;background:#fdf6e3;margin:0}
+.hero{background:linear-gradient(135deg,#a33d00,#ff6a00);color:white;padding:25px 15px;text-align:center}
+.hero h1{margin:0;font-size:32px}.hero p{margin:5px 0 0 0}
+.nav{display:flex;justify-content:center;gap:8px;padding:10px;background:white;position:sticky;top:0;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+.nav button{border:none;padding:10px 16px;border-radius:20px;font-weight:bold;background:#eee}
+.nav button.active{background:#a33d00;color:white}
+.card{background:white;margin:12px auto;max-width:900px;padding:15px;border-radius:18px;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+input{width:95%;padding:13px;margin:6px 0;border-radius:12px;border:1px solid #ddd;font-size:16px}
+.btn-up{background:#c0392b;color:white;width:96%;padding:14px;font-size:17px;border-radius:12px;border:none;font-weight:bold}
+.show-gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:700px){.show-gallery{grid-template-columns:1fr 1fr 1fr}}
+.show-item{background:white;border-radius:16px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.12);position:relative}
+.show-item img{width:100%;height:220px;object-fit:cover;cursor:pointer}
+.show-body{padding:10px}
+.price-tag{background:#0a8a00;color:white;padding:4px 10px;border-radius:20px;font-weight:800;font-size:14px;position:absolute;top:8px;left:8px}
+.buy-btn{background:#25D366;color:white;width:100%;padding:11px;border:none;border-radius:10px;font-weight:bold;margin-top:6px;font-size:14px}
+.small-btn{border:none;padding:7px 10px;border-radius:8px;font-size:12px;margin:2px;font-weight:bold}
+.like{background:#ffe4e4}.share{background:#fff3cd}.down{background:#e3f2fd}
+.lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);display:none;justify-content:center;align-items:center;z-index:99;flex-direction:column;padding:20px}
+.lightbox img{max-width:95%;max-height:75%;border-radius:12px}
+.lightbox p{color:white;margin-top:12px;text-align:center}
 </style>
 </head>
 <body>
-<h1>🎨 কলা কৰ্মী</h1>
-<p style="text-align:center"><b>Manuj Kumar Borah</b><br>Teok, Jorhat | 📞 9101573700<br>Painting ভাল লাগিলে তলৰ Button ত Click কৰক</p>
 
-<div class="card">
-<h3>➕ নতুন Painting Upload</h3>
-<input id="an" placeholder="আপোনাৰ নাম - Manuj">
-<input id="ap" type="number" placeholder="দাম - যেনে 1500">
-<input id="af" type="file" accept="image/*" multiple>
-<button class="btn-up" onclick="up()">📸 Upload কৰক আৰু বিক্ৰী কৰক</button>
+<div class="hero">
+<h1>🎨 কলা কৰ্মী</h1>
+<p><b>Manuj Kumar Borah</b><br>Teok, Jorhat - Assam | 📞 9101573700</p>
+<p style="font-size:13px;margin-top:8px;opacity:.9">আমাৰ Painting Show Gallery - চাওক, ভাল লাগিলে কিনক</p>
 </div>
 
-<div class="card"><h3>🛒 আমাৰ Gallery - কিনিবলৈ তলত Click কৰক</h3><div id="g" class="gallery"></div></div>
+<div class="nav">
+<button class="active" onclick="filterArt('all',this)">সকলো</button>
+<button onclick="filterArt('new',this)">নতুন</button>
+<button onclick="filterArt('low',this)">₹500 ৰ তলত</button>
+<button onclick="filterArt('high',this)">₹1000+</button>
+</div>
 
-<script>
-// আপোনাৰ Number Set কৰা আছে ✅
-let myNum="919101573700";
-let arts=JSON.parse(localStorage.getItem('kalaFinal700')||'[]');
-function save(){localStorage.setItem('kalaFinal700',JSON.stringify(arts));}
-function render(){
- let box=document.getElementById('g');
- box.innerHTML='';
- if(arts.length==0){box.innerHTML='<p style="text-align:center">এতিয়াও Painting নাই, আপুনি প্ৰথম Upload কৰক!</p>';return;}
- arts.forEach((a,i)=>{
-  box.innerHTML+=`
-  <div class="art">
-   <img src="${a.img}">
-   <div class="art-body">
-    <b>${a.t}</b><br>
-    <span class="price">₹${a.p}</span> <small>• ${a.a}</small>
-    <button class="buy" onclick="buy(${i})">🟢 WhatsApp ত কিনক - ₹${a.p}</button>
-    <div style="margin-top:8px;display:flex;gap:5px;flex-wrap:wrap">
-     <button class="s like" onclick="like(${i})">❤️ ${a.l||0} Like</button>
-     <button class="s down" onclick="dl(${i})">⬇️ HD Download</button>
-     <button class="s share" onclick="sh(${i})">🔗 Share</button>
-     <button class="s" style="background:#eee" onclick="del(${i})">X Delete</button>
-    </div>
-   </div>
-  </div>`;
- });
-}
-function up(){
- let a=document.getElementById('an').value||'Manuj Borah';
- let p=document.getElementById('ap').value||'500';
- let files=document.getElementById('af').files;
- if(!files.length){alert('ফটো Select কৰক!');return;}
- for(let f of files){
-  let r=new FileReader();
-  r.onload=e=>{
-   arts.unshift({t:f.name.replace('.jpg','').substring(0,20),a:a,p:p,img:e.target.result,l:0});
-   save();render();
-  };
-  r.readAsDataURL(f);
- }
- alert('Upload হৈছে ✅ - এতিয়া বিক্ৰীৰ বাবে Ready!');
-}
-function like(i){arts[i].l=(arts[i].l||0)+1;save();render();}
-function dl(i){let x=document.createElement('a');x.href=arts[i].img;x.download='KalaKarmi-'+arts[i].t+'.jpg';x.click();}
-function buy(i){
- let msg=`Namaste Manuj Da! 🙏\n\nMoi apunar "${arts[i].t}" painting khon kinibo bisaru.\nArtist: ${arts[i].a}\nDam: Rs.${arts[i].p}\n\nGallery Link: ${location.href}\n\nPlease jonabo.`;
- window.open(`https://wa.me/${myNum}?text=${encodeURIComponent(msg)}`,'_blank');
-}
-function sh(i){
- let msg=`🎨 Dekha ki dhunia painting! "${arts[i].t}" - Rs.${arts[i].p}\nKala Karmi Gallery - Manuj Borah, Teok\n${location.href}`;
- if(navigator.share){navigator.share({title:arts[i].t,text:msg});}
- else{window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`,'_blank');}
-}
-function del(i){if(confirm('Delete koribo?')){arts.splice(i,1);save();render();}}
-render();
-</script>
-</body>
-</html>
+<div class="card">
+<h3>➕ আপোনাৰ Painting Show ৰ বাবে Upload কৰক</h3>
+<input id="an" placeholder="আপোনাৰ নাম - Manuj">
+<input id="at" placeholder="Painting ৰ নাম - যেনে Teok ৰ পথাৰ">
+<input id="ap" type="number" placeholder="বিক্ৰী দাম - যেনে 1500">
+<input id="af" type="file" accept="image/*" multiple>
+<button class="btn-up" onclick="uploadArt()">🖼️ Show Gallery ত যোগ কৰক</button>
+</div>
+
+<div class="card">
+<h3 id="countTitle">🖼️ Show Gallery - বিক্ৰী চলি আছে</h3>
+<div id="gallery" class="show-gallery"></div>
+<p id="empty" style="text-align:center">এতিয়াও Painting নাই - আপুনি প্ৰথম Show কৰক!</p>
+</div>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+<img id="lbImg" src=""><p id="lbText"></p><p style="color:#ccc;font-size:12px">ব
