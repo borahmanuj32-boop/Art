@@ -1,65 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="as">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>কলা কৰ্মী - Art by Manuj</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>কলা কৰ্মী - Art | Manuj Borah</title>
 <style>
-body{font-family:Arial;text-align:center;background:#fff8e1;margin:0;padding:20px}
-h1{color:#bf360c}
-.gallery{display:flex;flex-wrap:wrap;justify-content:center}
-.card{background:white;padding:10px;margin:10px;border-radius:12px;box-shadow:0 2px 5px #ccc;width:150px}
-.card img{width:100%;border-radius:8px}
-.editor{background:white;padding:20px;border-radius:15px;margin-top:20px}
-canvas{max-width:100%;border:1px solid #ddd;margin-top:10px}
-button{padding:8px 15px;margin:5px;border:none;background:#bf360c;color:white;border-radius:5px}
+body{font-family:system-ui;background:#fef9e7;margin:0;padding:10px;text-align:center}
+h1{color:#b94e00}
+.card{background:white;padding:15px;border-radius:15px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin:15px auto;max-width:500px}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.gallery img{width:100%;border-radius:12px}
+button{background:#c0392b;color:white;border:none;padding:10px 15px;border-radius:8px;margin:5px}
 </style>
 </head>
 <body>
 <h1>🎨 কলা কৰ্মী - Art</h1>
-<p><b>Manuj Kumar Borah</b> | Teok, Jorhat, Assam</p>
-<p>Copyright (c) 2026 - Free & Open Source</p>
-
-<h2>🖼️ Painting Collection</h2>
+<p><b>Manuj Kumar Borah | Teok, Jorhat, Assam</b></p>
+<div class="card">
+<h2>🖼️ মোৰ ছবি</h2>
 <div class="gallery">
-<div class="card"><p>আপোনাৰ Painting 1</p></div>
-<div class="card"><p>আপোনাৰ Painting 2</p></div>
-<div class="card"><p>আপোনাৰ Painting 3</p></div>
+<img src="painting1.jpg">
+<img src="painting2.jpg">
 </div>
-
-<h2>📸 Photo Editor</h2>
-<div class="editor">
-<input type="file" id="upload" accept="image/*">
-<br>
-<canvas id="canvas"></canvas>
-<br>
-<button onclick="applyFilter('grayscale(100%)')">Black & White</button>
-<button onclick="applyFilter('brightness(150%)')">Bright</button>
-<button onclick="applyFilter('sepia(100%)')">Sepia</button>
-<button onclick="applyFilter('none')">Original</button>
+<p>আপোনাৰ Painting বোৰ ইয়াত দেখা যাব</p>
 </div>
-
+<div class="card">
+<h2>📸 Photo Filter</h2>
+<input type="file" id="up" accept="image/*"><br><br>
+<canvas id="c"></canvas><br>
+<button onclick="f('grayscale(100%)')">Black White</button>
+<button onclick="f('sepia(100%)')">Sepia</button>
+<button onclick="f('none')">Original</button><br>
+<button onclick="d()" style="background:green">⬇️ Download</button>
+</div>
 <script>
-const upload=document.getElementById('upload');
-const canvas=document.getElementById('canvas');
-const ctx=canvas.getContext('2d');
-let img=new Image();
-upload.addEventListener('change',function(e){
-  const file=e.target.files[0];
-  const reader=new FileReader();
-  reader.onload=function(event){
-    img.onload=function(){
-      canvas.width=img.width/2;
-      canvas.height=img.height/2;
-      ctx.drawImage(img,0,0,canvas.width,canvas.height);
-    }
-    img.src=event.target.result;
-  }
-  reader.readAsDataURL(file);
+let I=new Image(),C=document.getElementById('c'),X=C.getContext('2d');
+document.getElementById('up').addEventListener('change',e=>{
+I.src=URL.createObjectURL(e.target.files[0]);
+I.onload=()=>{C.width=I.width;C.height=I.height;X.drawImage(I,0,0);}
 });
-function applyFilter(f){
-  canvas.style.filter=f;
-}
+function f(a){X.filter=a;X.drawImage(I,0,0,C.width,C.height);}
+function d(){let a=document.createElement('a');a.download='art.png';a.href=C.toDataURL();a.click();}
 </script>
 </body>
-                                       </html>
+</html>
