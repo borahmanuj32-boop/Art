@@ -19,7 +19,97 @@ button{padding:12px 16px;border-radius:10px;border:none;font-weight:bold;margin:
 .price{color:green;font-weight:bold;font-size:18px}
 .row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .small{font-size:14px;padding:8px 10px}
-.like{background:#ffe4e4} .down{background:#e3f2fd} .buy{background:#25D366;color:white}
+.like{background:#ffe4e4}.down{background:#e3f2fd}.buy{background:#25D366;color:white}
 .del{background:#555;color:white}
 .comment-box{background:#f9f9f9;padding:8px;border-radius:8px;margin-top:8px}
-.comment{font-size:13px;border-bottom:1px dashed #ddd;padding:3
+.comment{font-size:13px;border-bottom:1px dashed #ddd;padding:3px 0}
+</style>
+</head>
+<body>
+<h1>🎨 কলা কৰ্মী</h1>
+<p style="text-align:center"><b>Manuj Kumar Borah | Teok, Jorhat</b><br>যিকোনোৱে Upload কৰক, Like কৰক, কিনক!</p>
+
+<div class="card">
+<h3>➕ নতুন Painting Upload</h3>
+<input id="aName" placeholder="আপোনাৰ নাম">
+<input id="aPrice" type="number" placeholder="দাম লিখক - যেনে 500">
+<input id="aFile" type="file" accept="image/*" multiple>
+<button class="btn-up" onclick="doUpload()">📸 Upload কৰক</button>
+</div>
+
+<div class="card">
+<h3>🖼️ Gallery (সকলোৰে Art)</h3>
+<div id="g" class="gallery"></div>
+<p id="empty">এতিয়াও ফটো নাই - আপুনি প্ৰথম Upload কৰক!</p>
+</div>
+
+<script>
+let arts = JSON.parse(localStorage.getItem('manujArtV3')||'[]');
+const myWaNumber = "9101573700"; // <-- ইয়াত আপোনাৰ WhatsApp Number দিব 91 লগাই
+
+function save(){localStorage.setItem('manujArtV3',JSON.stringify(arts));}
+
+function render(){
+ let box=document.getElementById('g');
+ let emp=document.getElementById('empty');
+ box.innerHTML='';
+ if(arts.length==0){emp.style.display='block';return;}
+ emp.style.display='none';
+ arts.forEach((a,i)=>{
+  let waText = `Namaste Manuj Da! Moi "${a.name}" painting tu kinibo bisaru. Dam: Rs.${a.price}. Photo: `;
+  let waLink = `https://wa.me/${myWaNumber}?text=${encodeURIComponent(waText)}`;
+  box.innerHTML+=`
+  <div class="art">
+   <img src="${a.img}">
+   <div class="art-body">
+    <b>${a.name}</b><br><span class="price">₹${a.price||'Not for Sale'}</span>
+    <div class="row">
+     <button class="small like" onclick="like(${i})">❤️ ${a.likes||0} Like</button>
+     <button class="small down" onclick="downloadImg(${i})">⬇️ HD Download</button>
+     <a href="${waLink}" target="_blank"><button class="small buy">🟢 WhatsApp ত কিনক</button></a>
+     <button class="small del" onclick="delArt(${i})">X Delete</button>
+    </div>
+    <div class="comment-box">
+     <div id="cList${i}">${(a.comments||[]).map(c=>`<div class="comment">💬 ${c}</div>`).join('')}</div>
+     <input id="cIn${i}" placeholder="Comment লিখক..." style="width:65%">
+     <button class="small" onclick="addC(${i})" style="background:#ff9800;color:white">Post</button>
+    </div>
+   </div>
+  </div>`;
+ });
+}
+
+function doUpload(){
+ let name=document.getElementById('aName').value||'Anonymous';
+ let price=document.getElementById('aPrice').value||'0';
+ let files=document.getElementById('aFile').files;
+ if(!files.length){alert('ফটো Select কৰক!');return;}
+ for(let f of files){
+  let r=new FileReader();
+  r.onload=e=>{
+   arts.unshift({name:name,price:price,img:e.target.result,likes:0,comments:[]});
+   save();render();
+  };
+  r.readAsDataURL(f);
+ }
+ alert('Upload হৈছে ✅');
+}
+
+function like(i){arts[i].likes=(arts[i].likes||0)+1;save();render();}
+function addC(i){
+ let inp=document.getElementById('cIn'+i);
+ if(!inp.value.trim())return;
+ arts[i].comments=arts[i].comments||[];
+ arts[i].comments.push(inp.value);
+ inp.value='';save();render();
+}
+function downloadImg(i){
+ let a=document.createElement('a');
+ a.href=arts[i].img; a.download=arts[i].name+'.jpg'; a.click();
+}
+function delArt(i){if(confirm('Delete?')){arts.splice(i,1);save();render();}}
+
+render();
+</script>
+</body>
+</html>
