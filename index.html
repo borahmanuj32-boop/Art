@@ -3,112 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>কলা কৰ্মী - Manuj Art Gallery</title>
+<title>কলা কৰ্মী - Manuj Art Store</title>
 <style>
 body{font-family:system-ui;background:#fff8e7;margin:0;padding:10px}
-h1{color:#a33d00;text-align:center}
-.card{background:white;padding:15px;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.15);margin:12px auto;max-width:700px}
-input{width:90%;padding:12px;margin:6px;border-radius:10px;border:1px solid #ccc;font-size:16px}
-button{padding:12px 16px;border-radius:10px;border:none;font-weight:bold;margin:4px}
-.btn-up{background:#c0392b;color:white;width:95%}
-.gallery{display:grid;grid-template-columns:1fr;gap:18px}
+h1{color:#a33d00;text-align:center;margin-bottom:0}
+.card{background:white;padding:15px;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.15);margin:12px auto;max-width:720px}
+input{width:93%;padding:12px;margin:6px 0;border-radius:10px;border:1px solid #ccc;font-size:16px}
+button{padding:10px 12px;border-radius:10px;border:none;font-weight:bold;margin:3px;cursor:pointer}
+.btn-up{background:#c0392b;color:white;width:96%;font-size:17px;padding:14px}
+.gallery{display:grid;grid-template-columns:1fr;gap:16px}
 @media(min-width:600px){.gallery{grid-template-columns:1fr 1fr}}
-.art{border:1px solid #eee;border-radius:14px;overflow:hidden;background:#fff}
-.art img{width:100%;height:260px;object-fit:cover}
-.art-body{padding:10px;text-align:left}
-.price{color:green;font-weight:bold;font-size:18px}
-.row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.small{font-size:14px;padding:8px 10px}
-.like{background:#ffe4e4}.down{background:#e3f2fd}.buy{background:#25D366;color:white}
-.del{background:#555;color:white}
-.comment-box{background:#f9f9f9;padding:8px;border-radius:8px;margin-top:8px}
-.comment{font-size:13px;border-bottom:1px dashed #ddd;padding:3px 0}
+.art{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #eee}
+.art img{width:100%;height:300px;object-fit:cover}
+.art-body{padding:12px}
+.price{color:#0a8a00;font-weight:800;font-size:22px}
+.buy{background:#25D366;color:white;width:100%;font-size:16px;padding:14px;margin-top:8px;border-radius:12px}
+.s{font-size:13px;padding:8px 12px}
+.like{background:#ffe4e4}.down{background:#e3f2fd}.share{background:#fff3cd;color:#000}
 </style>
 </head>
 <body>
 <h1>🎨 কলা কৰ্মী</h1>
-<p style="text-align:center"><b>Manuj Kumar Borah | Teok, Jorhat</b><br>যিকোনোৱে Upload কৰক, Like কৰক, কিনক!</p>
+<p style="text-align:center"><b>Manuj Kumar Borah</b><br>Teok, Jorhat | 📞 9101573700<br>Painting ভাল লাগিলে তলৰ Button ত Click কৰক</p>
 
 <div class="card">
 <h3>➕ নতুন Painting Upload</h3>
-<input id="aName" placeholder="আপোনাৰ নাম">
-<input id="aPrice" type="number" placeholder="দাম লিখক - যেনে 500">
-<input id="aFile" type="file" accept="image/*" multiple>
-<button class="btn-up" onclick="doUpload()">📸 Upload কৰক</button>
+<input id="an" placeholder="আপোনাৰ নাম - Manuj">
+<input id="ap" type="number" placeholder="দাম - যেনে 1500">
+<input id="af" type="file" accept="image/*" multiple>
+<button class="btn-up" onclick="up()">📸 Upload কৰক আৰু বিক্ৰী কৰক</button>
 </div>
 
-<div class="card">
-<h3>🖼️ Gallery (সকলোৰে Art)</h3>
-<div id="g" class="gallery"></div>
-<p id="empty">এতিয়াও ফটো নাই - আপুনি প্ৰথম Upload কৰক!</p>
-</div>
+<div class="card"><h3>🛒 আমাৰ Gallery - কিনিবলৈ তলত Click কৰক</h3><div id="g" class="gallery"></div></div>
 
 <script>
-let arts = JSON.parse(localStorage.getItem('manujArtV3')||'[]');
-const myWaNumber = "9101573700"; // <-- ইয়াত আপোনাৰ WhatsApp Number দিব 91 লগাই
-
-function save(){localStorage.setItem('manujArtV3',JSON.stringify(arts));}
-
+// আপোনাৰ Number Set কৰা আছে ✅
+let myNum="919101573700";
+let arts=JSON.parse(localStorage.getItem('kalaFinal700')||'[]');
+function save(){localStorage.setItem('kalaFinal700',JSON.stringify(arts));}
 function render(){
  let box=document.getElementById('g');
- let emp=document.getElementById('empty');
  box.innerHTML='';
- if(arts.length==0){emp.style.display='block';return;}
- emp.style.display='none';
+ if(arts.length==0){box.innerHTML='<p style="text-align:center">এতিয়াও Painting নাই, আপুনি প্ৰথম Upload কৰক!</p>';return;}
  arts.forEach((a,i)=>{
-  let waText = `Namaste Manuj Da! Moi "${a.name}" painting tu kinibo bisaru. Dam: Rs.${a.price}. Photo: `;
-  let waLink = `https://wa.me/${myWaNumber}?text=${encodeURIComponent(waText)}`;
   box.innerHTML+=`
   <div class="art">
    <img src="${a.img}">
    <div class="art-body">
-    <b>${a.name}</b><br><span class="price">₹${a.price||'Not for Sale'}</span>
-    <div class="row">
-     <button class="small like" onclick="like(${i})">❤️ ${a.likes||0} Like</button>
-     <button class="small down" onclick="downloadImg(${i})">⬇️ HD Download</button>
-     <a href="${waLink}" target="_blank"><button class="small buy">🟢 WhatsApp ত কিনক</button></a>
-     <button class="small del" onclick="delArt(${i})">X Delete</button>
-    </div>
-    <div class="comment-box">
-     <div id="cList${i}">${(a.comments||[]).map(c=>`<div class="comment">💬 ${c}</div>`).join('')}</div>
-     <input id="cIn${i}" placeholder="Comment লিখক..." style="width:65%">
-     <button class="small" onclick="addC(${i})" style="background:#ff9800;color:white">Post</button>
+    <b>${a.t}</b><br>
+    <span class="price">₹${a.p}</span> <small>• ${a.a}</small>
+    <button class="buy" onclick="buy(${i})">🟢 WhatsApp ত কিনক - ₹${a.p}</button>
+    <div style="margin-top:8px;display:flex;gap:5px;flex-wrap:wrap">
+     <button class="s like" onclick="like(${i})">❤️ ${a.l||0} Like</button>
+     <button class="s down" onclick="dl(${i})">⬇️ HD Download</button>
+     <button class="s share" onclick="sh(${i})">🔗 Share</button>
+     <button class="s" style="background:#eee" onclick="del(${i})">X Delete</button>
     </div>
    </div>
   </div>`;
  });
 }
-
-function doUpload(){
- let name=document.getElementById('aName').value||'Anonymous';
- let price=document.getElementById('aPrice').value||'0';
- let files=document.getElementById('aFile').files;
+function up(){
+ let a=document.getElementById('an').value||'Manuj Borah';
+ let p=document.getElementById('ap').value||'500';
+ let files=document.getElementById('af').files;
  if(!files.length){alert('ফটো Select কৰক!');return;}
  for(let f of files){
   let r=new FileReader();
   r.onload=e=>{
-   arts.unshift({name:name,price:price,img:e.target.result,likes:0,comments:[]});
+   arts.unshift({t:f.name.replace('.jpg','').substring(0,20),a:a,p:p,img:e.target.result,l:0});
    save();render();
   };
   r.readAsDataURL(f);
  }
- alert('Upload হৈছে ✅');
+ alert('Upload হৈছে ✅ - এতিয়া বিক্ৰীৰ বাবে Ready!');
 }
-
-function like(i){arts[i].likes=(arts[i].likes||0)+1;save();render();}
-function addC(i){
- let inp=document.getElementById('cIn'+i);
- if(!inp.value.trim())return;
- arts[i].comments=arts[i].comments||[];
- arts[i].comments.push(inp.value);
- inp.value='';save();render();
+function like(i){arts[i].l=(arts[i].l||0)+1;save();render();}
+function dl(i){let x=document.createElement('a');x.href=arts[i].img;x.download='KalaKarmi-'+arts[i].t+'.jpg';x.click();}
+function buy(i){
+ let msg=`Namaste Manuj Da! 🙏\n\nMoi apunar "${arts[i].t}" painting khon kinibo bisaru.\nArtist: ${arts[i].a}\nDam: Rs.${arts[i].p}\n\nGallery Link: ${location.href}\n\nPlease jonabo.`;
+ window.open(`https://wa.me/${myNum}?text=${encodeURIComponent(msg)}`,'_blank');
 }
-function downloadImg(i){
- let a=document.createElement('a');
- a.href=arts[i].img; a.download=arts[i].name+'.jpg'; a.click();
+function sh(i){
+ let msg=`🎨 Dekha ki dhunia painting! "${arts[i].t}" - Rs.${arts[i].p}\nKala Karmi Gallery - Manuj Borah, Teok\n${location.href}`;
+ if(navigator.share){navigator.share({title:arts[i].t,text:msg});}
+ else{window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`,'_blank');}
 }
-function delArt(i){if(confirm('Delete?')){arts.splice(i,1);save();render();}}
-
+function del(i){if(confirm('Delete koribo?')){arts.splice(i,1);save();render();}}
 render();
 </script>
 </body>
