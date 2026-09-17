@@ -1,78 +1,90 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VENUS ART GALLERY, TEOK</title>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VENUS ART GALLERY - Admin Upload</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:Roboto;background:#f1f3f6}
-.top{background:#2874f0;color:#fff;padding:12px 15px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99}
-.logo{font-weight:bold;font-size:18px}.logo span{color:#ffe500}
-.btn{background:#fff;color:#2874f0;padding:6px 12px;border-radius:2px;font-weight:bold;border:0;cursor:pointer;font-size:13px}
-.hero{background:#fff;margin:10px;padding:15px;text-align:center}
-.grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;padding:10px}
-.card{background:#fff;padding:10px;border-radius:3px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.1)}
-.card img{width:100%;height:170px;object-fit:cover;border-radius:2px}
-.price{color:#000;font-weight:bold}.mrp{color:#878787;text-decoration:line-through;margin-left:5px;font-size:13px}.off{color:#388e3c;margin-left:5px;font-size:13px}
-.buy{display:block;margin-top:8px;background:#fb641b;color:#fff;padding:8px;text-decoration:none;border-radius:2px;font-weight:bold;font-size:13px}
-#loginBox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:100}
-.form{background:#fff;padding:25px;border-radius:15px;width:90%;max-width:350px}
-.form h2{text-align:center;color:#1a237e;margin-bottom:5px}.form input{width:100%;padding:13px;margin:7px 0;border:1.5px solid #ccc;border-radius:10px}
-.form button{width:100%;padding:13px;background:#ff5a00;color:#fff;border:0;border-radius:10px;font-size:18px;font-weight:bold;margin-top:10px}
+.top{background:#2874f0;color:#fff;padding:12px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99}
+.logo{font-weight:bold}.logo span{color:#ffe500}
+.btn{background:#fff;color:#2874f0;padding:6px 10px;border-radius:2px;border:0;font-weight:bold;font-size:12px;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:8px;padding:10px}
+.card{background:#fff;padding:10px;border-radius:3px;position:relative}
+.card img{width:100%;height:170px;object-fit:cover}
+.buy{display:block;text-align:center;margin-top:6px;background:#fb641b;color:#fff;padding:8px;text-decoration:none;border-radius:2px;font-weight:bold;font-size:13px}
+#adminBox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:200}
+.form{background:#fff;padding:20px;border-radius:8px;width:92%;max-width:380px}
+.form input{width:100%;padding:11px;margin:6px 0;border:1px solid #ccc;border-radius:3px}
+.form button{width:100%;padding:11px;background:#2874f0;color:#fff;border:0;font-weight:bold;margin-top:8px;cursor:pointer}
 </style></head><body>
 
 <div class="top">
 <div class="logo">VENUS <span>Gallery</span></div>
 <div>
-<span id="uName" style="font-size:13px;margin-right:8px"></span>
-<button class="btn" id="lBtn" onclick="openL()">Login</button>
-<button class="btn" id="loBtn" onclick="logout()" style="display:none">Logout</button>
+<button class="btn" onclick="openAdmin()">🔒 Admin Upload</button>
+<button class="btn" id="uName">Login</button>
 </div>
 </div>
 
-<div id="loginBox">
+<div style="background:#fff;padding:10px;margin:8px;text-align:center">
+<h3>VENUS ART GALLERY, TEOK</h3><p style="font-size:12px;color:gray">তুমি Upload কৰা ফটো ইয়াত দেখা যাব</p>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<!-- SECRET ADMIN PANEL -->
+<div id="adminBox">
 <div class="form">
-<h2>Login</h2><p style="text-align:center;color:gray;font-size:12px;margin-bottom:15px">Welcome! Address দি Login কৰক</p>
-<input id="name" placeholder="তোমাৰ নাম">
-<input id="phone" placeholder="Mobile Number" type="number">
-<input id="addr" placeholder="তোমাৰ Address - Teok, Jorhat">
-<button onclick="doLogin()">Login</button>
-<p style="text-align:center;font-size:12px;color:gray;margin-top:10px" onclick="closeL()">Close</p>
+<h3>🔐 Admin Only - Photo Upload</h3>
+<p style="font-size:12px;color:gray;margin-bottom:10px">Password: venus123 (কেৱল তুমি জানা)</p>
+<input type="password" id="adminPass" placeholder="Admin Password">
+<div id="uploadArea" style="display:none">
+<hr style="margin:10px 0">
+<input id="pName" placeholder="Painting Name - Eg: Radha Krishna">
+<input id="pPrice" placeholder="Price - Eg: 1499" type="number">
+<input type="file" id="pFile" accept="image/*" style="padding:5px">
+<img id="preview" style="width:100%;height:150px;object-fit:cover;display:none;margin-top:8px;border:1px solid #ddd">
+<button onclick="uploadPhoto()" style="background:#388e3c">Upload & Save</button>
+<button onclick="clearAll()" style="background:#000">Delete All My Uploads</button>
 </div>
+<button onclick="checkPass()">Unlock</button>
+<p style="text-align:center;font-size:12px;color:gray;margin-top:8px" onclick="closeAdmin()">Close</p>
 </div>
-
-<div class="hero">
-<h2 id="welcome">VENUS ART GALLERY, TEOK</h2>
-<p id="showAddr" style="color:#388e3c;margin-top:5px;font-size:14px">Best Canvas Paintings | Login কৰি Address Save কৰক</p>
-</div>
-
-<div class="grid">
-<div class="card"><img src="art1.jpg" onerror="this.src='https://picsum.photos/400/400?random=11'"><p style="font-size:14px;margin-top:5px">Radha Krishna</p><p><span class="price">₹1,499</span><span class="mrp">₹2,999</span><span class="off">50% off</span></p><a class="buy" id="b1" href="https://wa.me/919101573700?text=Buy%20Radha%20Krishna">Buy Now</a></div>
-<div class="card"><img src="art2.jpg" onerror="this.src='https://picsum.photos/400/400?random=12'"><p style="font-size:14px;margin-top:5px">Abstract Art</p><p><span class="price">₹1,999</span><span class="mrp">₹3,999</span><span class="off">50% off</span></p><a class="buy" id="b2" href="https://wa.me/919101573700?text=Buy%20Abstract">Buy Now</a></div>
-<div class="card"><img src="art3.jpg" onerror="this.src='https://picsum.photos/400/400?random=13'"><p style="font-size:14px;margin-top:5px">Village Scenery</p><p><span class="price">₹1,299</span><span class="mrp">₹2,599</span><span class="off">50% off</span></p><a class="buy" id="b3" href="https://wa.me/919101573700?text=Buy%20Village">Buy Now</a></div>
-<div class="card"><img src="art4.jpg" onerror="this.src='https://picsum.photos/400/400?random=14'"><p style="font-size:14px;margin-top:5px">Modern Art</p><p><span class="price">₹2,499</span><span class="mrp">₹4,999</span><span class="off">50% off</span></p><a class="buy" id="b4" href="https://wa.me/919101573700?text=Buy%20Modern">Buy Now</a></div>
 </div>
 
 <script>
-function openL(){document.getElementById('loginBox').style.display='flex'}
-function closeL(){document.getElementById('loginBox').style.display='none'}
-function doLogin(){
-let n=document.getElementById('name').value; let p=document.getElementById('phone').value; let a=document.getElementById('addr').value;
-if(!n){alert('নাম দিয়া');return}
-localStorage.setItem('v_user',n); localStorage.setItem('v_phone',p); localStorage.setItem('v_addr',a);
-update(); closeL();
+function openAdmin(){document.getElementById('adminBox').style.display='flex'}
+function closeAdmin(){document.getElementById('adminBox').style.display='none'}
+function checkPass(){
+if(document.getElementById('adminPass').value=='venus123'){
+document.getElementById('uploadArea').style.display='block';
+alert('Admin Unlock! এতিয়া ফটো Upload কৰিব পাৰা');
+}else alert('Wrong Password! কেৱল মালিকেহে পাৰিব');
 }
-function update(){
-let u=localStorage.getItem('v_user'); let ph=localStorage.getItem('v_phone'); let ad=localStorage.getItem('v_addr');
-if(u){
-document.getElementById('uName').innerText='Hi, '+u;
-document.getElementById('welcome').innerText='Welcome, '+u+'!';
-document.getElementById('showAddr').innerText='📍 '+ad+' | 📞 '+ph;
-document.getElementById('lBtn').style.display='none'; document.getElementById('loBtn').style.display='inline-block';
-let msg=`Hi Venus, I am ${u} (${ph}), Address: ${ad}. I want to buy `;
-document.getElementById('b1').href='https://wa.me/919101573700?text='+encodeURIComponent(msg+'Radha Krishna Rs1499');
-document.getElementById('b2').href='https://wa.me/919101573700?text='+encodeURIComponent(msg+'Abstract Rs1999');
-document.getElementById('b3').href='https://wa.me/919101573700?text='+encodeURIComponent(msg+'Village Rs1299');
-document.getElementById('b4').href='https://wa.me/919101573700?text='+encodeURIComponent(msg+'Modern Rs2499');
-}}
-function logout(){localStorage.clear(); location.reload()}
-update();
+document.getElementById('pFile').addEventListener('change',function(e){
+let r=new FileReader(); r.onload=function(ev){document.getElementById('preview').src=ev.target.result; document.getElementById('preview').style.display='block'; document.getElementById('preview').dataset.url=ev.target.result;}; r.readAsDataURL(e.target.files[0]);
+});
+function uploadPhoto(){
+let name=document.getElementById('pName').value||'My Art';
+let price=document.getElementById('pPrice').value||'1499';
+let img=document.getElementById('preview').dataset.url;
+if(!img){alert('ফটো Select কৰা');return}
+let data=JSON.parse(localStorage.getItem('venusArts')||'[]');
+data.push({name,price,img}); localStorage.setItem('venusArts',JSON.stringify(data));
+render(); alert('Uploaded! Website ত আহি গল'); closeAdmin();
+}
+function render(){
+let grid=document.getElementById('grid'); grid.innerHTML='';
+let defaults=[
+{name:"Radha Krishna",price:1499,img:"https://picsum.photos/400/400?random=31"},
+{name:"Abstract Art",price:1999,img:"https://picsum.photos/400/400?random=32"},
+];
+let myArts=JSON.parse(localStorage.getItem('venusArts')||'[]');
+let all=[...myArts.reverse(),...defaults];
+all.forEach((p,i)=>{
+let wa=`https://wa.me/919101573700?text=`+encodeURIComponent(`Hi Venus, I want ${p.name} Rs${p.price}`);
+grid.innerHTML+=`<div class="card"><img src="${p.img}"><p style="font-size:13px;margin-top:5px">${p.name} ${i<myArts.length?'<span style="background:green;color:#fff;font-size:9px;padding:2px 4px;border-radius:3px">NEW</span>':''}</p><p style="font-weight:bold">₹${p.price}</p><a class="buy" href="${wa}">Buy Now</a></div>`;
+});
+}
+function clearAll(){if(confirm('সকলো Upload Delete কৰিম নে?')){localStorage.removeItem('venusArts'); render();}}
+render();
 </script>
 </body></html>
