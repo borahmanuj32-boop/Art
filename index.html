@@ -1,90 +1,104 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VENUS ART GALLERY - Admin Upload</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VENUS ART GALLERY, TEOK - Complete Flipkart Clone</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:Roboto;background:#f1f3f6}
-.top{background:#2874f0;color:#fff;padding:12px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99}
-.logo{font-weight:bold}.logo span{color:#ffe500}
-.btn{background:#fff;color:#2874f0;padding:6px 10px;border-radius:2px;border:0;font-weight:bold;font-size:12px;cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:8px;padding:10px}
-.card{background:#fff;padding:10px;border-radius:3px;position:relative}
-.card img{width:100%;height:170px;object-fit:cover}
-.buy{display:block;text-align:center;margin-top:6px;background:#fb641b;color:#fff;padding:8px;text-decoration:none;border-radius:2px;font-weight:bold;font-size:13px}
-#adminBox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:200}
-.form{background:#fff;padding:20px;border-radius:8px;width:92%;max-width:380px}
-.form input{width:100%;padding:11px;margin:6px 0;border:1px solid #ccc;border-radius:3px}
-.form button{width:100%;padding:11px;background:#2874f0;color:#fff;border:0;font-weight:bold;margin-top:8px;cursor:pointer}
-</style></head><body>
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,sans-serif}body{background:#f1f3f6;color:#212121}
+.top{background:#2874f0;color:#fff;padding:10px 12px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100}
+.logo{font-weight:700;font-size:19px;cursor:pointer}.logo i{color:#ffe500;font-size:13px;display:block;margin-top:-4px}
+.search{flex:1;display:flex;background:#fff;border-radius:2px;overflow:hidden;position:relative}
+.search input{flex:1;padding:10px;border:0;outline:none;font-size:14px}.search button{background:#fff;border:0;padding:0 14px;font-size:18px}
+.suggest{position:absolute;top:100%;left:0;right:0;background:#fff;color:#000;box-shadow:0 4px 8px rgba(0,0,0,.2);display:none;z-index:101}
+.suggest div{padding:10px;border-bottom:1px solid #eee;cursor:pointer}
+.icons{display:flex;gap:14px;font-weight:500;font-size:13px;align-items:center;white-space:nowrap;cursor:pointer}
+.cats{background:#fff;display:flex;gap:18px;padding:10px 14px;overflow-x:auto;white-space:nowrap;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.cats div{text-align:center;font-size:12px;font-weight:500;cursor:pointer;min-width:60px}.cats img{width:56px;height:56px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 4px;border:1px solid #eee}
+.banner{margin:8px;background:#fff;height:160px;overflow:hidden;position:relative;border-radius:2px}
+.slides{display:flex;transition:0.5s;height:100%}.slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;color:#fff}
+.filterBar{background:#fff;padding:10px;display:flex;gap:8px;overflow-x:auto;margin:8px 8px 0;align-items:center;border-radius:2px}
+.filterBar button,.filterBar select{border:1px solid #d7d7d7;background:#fff;padding:6px 12px;border-radius:20px;font-size:12px;white-space:nowrap;cursor:pointer}
+.main{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:200px 1fr;gap:8px;padding:8px}
+.leftFilter{background:#fff;padding:12px;border-radius:2px;height:fit-content;position:sticky;top:60px}
+.leftFilter h4{font-size:14px;margin:12px 0 6px}.leftFilter label{font-size:13px;display:block;margin:4px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.card{background:#fff;padding:10px;border-radius:2px;position:relative;cursor:pointer;transition:.2s}.card:hover{box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.card img{width:100%;height:170px;object-fit:cover;border-radius:2px}
+.heart{position:absolute;top:8px;right:8px;background:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#c2c2c2;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.heart.active{color:#ff4343}
+.price{font-weight:700;font-size:14px}.mrp{color:gray;text-decoration:line-through;font-size:12px;margin-left:5px}.off{color:#388e3c;font-size:12px;margin-left:4px;font-weight:500}
+.rating{background:#388e3c;color:#fff;font-size:11px;padding:2px 5px;border-radius:3px;margin-right:4px}
+.buyRow{display:flex;gap:5px;margin-top:8px}.buyBtn{flex:1;text-align:center;padding:8px;font-size:12px;font-weight:700;border-radius:2px;text-decoration:none;cursor:pointer}
+.addCart{border:1px solid #d7d7d7;background:#fff;color:#000}.buyNow{background:#fb641b;color:#fff;border:0;width:100%}
+.modalBg{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);display:none;z-index:500;overflow-y:auto}
+.modalBox{background:#fff;max-width:950px;margin:20px auto;border-radius:4px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
+.modalBox img{width:100%;height:450px;object-fit:cover}
+.pDetail{padding:16px}.pDetail h2{font-size:20px}
+.pinBox{display:flex;gap:6px;margin:10px 0}.pinBox input{flex:1;padding:8px;border:1px solid #2874f0;border-radius:2px}.pinBox button{background:#2874f0;color:#fff;border:0;padding:0 12px;border-radius:2px}
+.sidePanel{position:fixed;top:0;right:-100%;width:92%;max-width:380px;height:100%;background:#fff;z-index:600;transition:.3s;box-shadow:-2px 0 10px rgba(0,0,0,.3);overflow-y:auto}
+.sidePanel.open{right:0}.panelHead{background:#2874f0;color:#fff;padding:14px;display:flex;justify-content:space-between}
+.formBox{background:#fff;padding:18px;border-radius:4px;width:92%;max-width:380px;margin:20px auto}
+.formBox input,.formBox select{width:100%;padding:11px;margin:6px 0;border:1px solid #ccc;border-radius:2px}
+.formBox button{width:100%;padding:11px;background:#fb641b;color:#fff;border:0;font-weight:700;margin-top:8px;cursor:pointer;border-radius:2px}
+.bottomNav{position:fixed;bottom:0;left:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:8px 0;box-shadow:0 -1px 4px rgba(0,0,0,.15);z-index:99}
+.bottomNav div{text-align:center;font-size:11px;cursor:pointer}
+@media(max-width:768px){.main{grid-template-columns:1fr}.leftFilter{display:none}.modalBox{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
 <div class="top">
-<div class="logo">VENUS <span>Gallery</span></div>
-<div>
-<button class="btn" onclick="openAdmin()">🔒 Admin Upload</button>
-<button class="btn" id="uName">Login</button>
+<div class="logo" onclick="location.reload()">VENUS<span style="color:#ffe500"> Gallery</span><i>Explore Plus ✦</i></div>
+<div class="search"><input id="searchInput" placeholder="Search for paintings..." oninput="doSearch()"><button>🔍</button><div class="suggest" id="suggest"></div></div>
+<div class="icons">
+<span onclick="openPanel('wishlistPanel')">♡ Wishlist <span id="wCount">0</span></span>
+<span onclick="openPanel('cartPanel')">🛒 Cart <span id="cCount">0</span></span>
+<span onclick="openLogin()"><span id="uName">Login</span></span>
+<span onclick="openAdmin()" style="background:#ffe500;color:#000;padding:4px 6px;border-radius:3px;font-size:11px">ADMIN</span>
 </div>
 </div>
-
-<div style="background:#fff;padding:10px;margin:8px;text-align:center">
-<h3>VENUS ART GALLERY, TEOK</h3><p style="font-size:12px;color:gray">তুমি Upload কৰা ফটো ইয়াত দেখা যাব</p>
-</div>
-
-<div class="grid" id="grid"></div>
-
-<!-- SECRET ADMIN PANEL -->
-<div id="adminBox">
-<div class="form">
-<h3>🔐 Admin Only - Photo Upload</h3>
-<p style="font-size:12px;color:gray;margin-bottom:10px">Password: venus123 (কেৱল তুমি জানা)</p>
-<input type="password" id="adminPass" placeholder="Admin Password">
-<div id="uploadArea" style="display:none">
-<hr style="margin:10px 0">
-<input id="pName" placeholder="Painting Name - Eg: Radha Krishna">
-<input id="pPrice" placeholder="Price - Eg: 1499" type="number">
-<input type="file" id="pFile" accept="image/*" style="padding:5px">
-<img id="preview" style="width:100%;height:150px;object-fit:cover;display:none;margin-top:8px;border:1px solid #ddd">
-<button onclick="uploadPhoto()" style="background:#388e3c">Upload & Save</button>
-<button onclick="clearAll()" style="background:#000">Delete All My Uploads</button>
-</div>
-<button onclick="checkPass()">Unlock</button>
-<p style="text-align:center;font-size:12px;color:gray;margin-top:8px" onclick="closeAdmin()">Close</p>
-</div>
-</div>
-
+<div class="cats" id="cats"></div>
+<div class="banner" onclick="nextSlide()"><div class="slides" id="slides"><div class="slide" style="background:linear-gradient(90deg,#ff9f00,#fb641b)">🔥 50% OFF - VENUS ART FESTIVAL</div><div class="slide" style="background:linear-gradient(90deg,#2874f0,#1a237e)">🎨 New Radha Krishna Collection</div><div class="slide" style="background:linear-gradient(90deg,#388e3c,#1b5e20)">🚚 Free Delivery in Teok</div></div></div>
+<div class="filterBar"><select onchange="sortBy(this.value)"><option value="">Sort By</option><option value="low">Price Low to High</option><option value="high">High to Low</option><option value="pop">Popularity</option><option value="new">Newest</option></select><button onclick="filterRating(4)">4★ & above</button><button onclick="filterDiscount(50)">50% Off</button><button onclick="filterCat('all')">Clear</button><span style="margin-left:auto;font-size:12px;color:gray" id="resultCount"></span></div>
+<div class="main"><div class="leftFilter"><h4>Filters</h4><h4>Category</h4><label><input type="checkbox" onchange="filterCat('radha')"> Radha Krishna</label><label><input type="checkbox" onchange="filterCat('abstract')"> Abstract</label><label><input type="checkbox" onchange="filterCat('village')"> Village</label><label><input type="checkbox" onchange="filterCat('modern')"> Modern</label><label><input type="checkbox" onchange="filterCat('portrait')"> Portrait</label><h4>Price</h4><label><input type="radio" name="price" onchange="filterPrice(0,1500)"> Under ₹1500</label><label><input type="radio" name="price" onchange="filterPrice(1500,3000)"> ₹1500-3000</label><label><input type="radio" name="price" onchange="filterPrice(3000,10000)"> Above ₹3000</label></div><div class="grid" id="grid"></div></div>
+<div class="modalBg" id="productModal"><div class="modalBox" id="pBox"></div></div>
+<div class="sidePanel" id="cartPanel"><div class="panelHead"><span>My Cart (<span id="cCount2">0</span>)</span><span onclick="closePanel('cartPanel')" style="cursor:pointer">✕</span></div><div id="cartItems" style="padding:10px"></div><div style="padding:12px;border-top:1px solid #eee"><p id="priceDetail" style="font-size:13px"></p><button class="buyBtn buyNow" onclick="checkout()" style="margin-top:10px">Place Order via WhatsApp</button></div></div>
+<div class="sidePanel" id="wishlistPanel"><div class="panelHead"><span>Wishlist</span><span onclick="closePanel('wishlistPanel')" style="cursor:pointer">✕</span></div><div id="wishItems" style="padding:10px"></div></div>
+<div class="sidePanel" id="ordersPanel"><div class="panelHead"><span>My Orders</span><span onclick="closePanel('ordersPanel')" style="cursor:pointer">✕</span></div><div id="orderList" style="padding:10px"></div></div>
+<div class="modalBg" id="loginModal" style="display:none;align-items:center;justify-content:center"><div class="formBox"><h3>Login to VENUS</h3><input id="lName" placeholder="Full Name *"><input id="lPhone" placeholder="Mobile Number *"><input id="lEmail" placeholder="Email"><select id="lAddrType"><option>Home</option><option>Office</option></select><input id="lAddress" placeholder="Full Address - Teok, Jorhat"><input id="lPin" placeholder="PIN - 785112"><button onclick="doLogin()">Save & Continue</button><p style="text-align:center;font-size:12px;color:gray;margin-top:8px;cursor:pointer" onclick="closeLogin()">Close</p></div></div>
+<div class="modalBg" id="adminModal" style="display:none;align-items:center;justify-content:center"><div class="formBox"><h3>🔐 Admin Upload</h3><p style="font-size:11px;color:gray">Password: venus123</p><input type="password" id="adminPass" placeholder="Enter Password"><button onclick="unlockAdmin()" id="unlockBtn">Unlock</button><div id="adminUp" style="display:none"><hr style="margin:10px 0"><input id="aName" placeholder="Painting Name"><input id="aPrice" type="number" placeholder="Price"><input id="aMrp" type="number" placeholder="MRP"><input id="aCat" placeholder="Category"><input type="file" id="aFile" accept="image/*"><img id="aPrev" style="width:100%;height:150px;object-fit:cover;display:none;margin-top:8px"><button onclick="addProduct()" style="background:#388e3c">Upload Art + Save</button><button onclick="openPanel('ordersPanel');closeAdmin()" style="background:#2874f0">View Orders</button></div><p style="text-align:center;font-size:12px;margin-top:8px;cursor:pointer" onclick="closeAdmin()">Close</p></div></div>
+<div class="bottomNav"><div onclick="location.reload()">🏠<br>Home</div><div onclick="openPanel('wishlistPanel')">♡<br>Wishlist</div><div onclick="openPanel('cartPanel')">🛒<br>Cart</div><div onclick="openPanel('ordersPanel')">📦<br>Orders</div><div onclick="openLogin()">👤<br>Account</div></div>
 <script>
-function openAdmin(){document.getElementById('adminBox').style.display='flex'}
-function closeAdmin(){document.getElementById('adminBox').style.display='none'}
-function checkPass(){
-if(document.getElementById('adminPass').value=='venus123'){
-document.getElementById('uploadArea').style.display='block';
-alert('Admin Unlock! এতিয়া ফটো Upload কৰিব পাৰা');
-}else alert('Wrong Password! কেৱল মালিকেহে পাৰিব');
-}
-document.getElementById('pFile').addEventListener('change',function(e){
-let r=new FileReader(); r.onload=function(ev){document.getElementById('preview').src=ev.target.result; document.getElementById('preview').style.display='block'; document.getElementById('preview').dataset.url=ev.target.result;}; r.readAsDataURL(e.target.files[0]);
-});
-function uploadPhoto(){
-let name=document.getElementById('pName').value||'My Art';
-let price=document.getElementById('pPrice').value||'1499';
-let img=document.getElementById('preview').dataset.url;
-if(!img){alert('ফটো Select কৰা');return}
-let data=JSON.parse(localStorage.getItem('venusArts')||'[]');
-data.push({name,price,img}); localStorage.setItem('venusArts',JSON.stringify(data));
-render(); alert('Uploaded! Website ত আহি গল'); closeAdmin();
-}
-function render(){
-let grid=document.getElementById('grid'); grid.innerHTML='';
-let defaults=[
-{name:"Radha Krishna",price:1499,img:"https://picsum.photos/400/400?random=31"},
-{name:"Abstract Art",price:1999,img:"https://picsum.photos/400/400?random=32"},
+let defaultProducts=[
+{id:1,name:"Radha Krishna Divine Art",cat:"radha",price:1499,mrp:2999,off:50,rating:4.5,reviews:1234,img:"https://picsum.photos/400/400?random=31",desc:"Handmade canvas 24x18 inch"},
+{id:2,name:"Abstract Color Splash",cat:"abstract",price:1999,mrp:3999,off:50,rating:4.3,reviews:892,img:"https://picsum.photos/400/400?random=32",desc:"Modern abstract premium"},
+{id:3,name:"Assam Village Scenery",cat:"village",price:1299,mrp:2599,off:50,rating:4.6,reviews:2100,img:"https://picsum.photos/400/400?random=33",desc:"Teok village beauty"},
+{id:4,name:"Modern Line Portrait",cat:"modern",price:2499,mrp:4999,off:50,rating:4.4,reviews:543,img:"https://picsum.photos/400/400?random=34",desc:"Minimalist modern art"},
+{id:5,name:"Lady in Blue - Classic",cat:"portrait",price:2750,mrp:4500,off:38,rating:4.7,reviews:3210,img:"https://picsum.photos/400/400?random=35",desc:"Classic portrait"},
+{id:6,name:"Golden Tides Abstract",cat:"abstract",price:3200,mrp:6000,off:46,rating:4.8,reviews:4123,img:"https://picsum.photos/400/400?random=36",desc:"Golden luxury art"},
 ];
-let myArts=JSON.parse(localStorage.getItem('venusArts')||'[]');
-let all=[...myArts.reverse(),...defaults];
-all.forEach((p,i)=>{
-let wa=`https://wa.me/919101573700?text=`+encodeURIComponent(`Hi Venus, I want ${p.name} Rs${p.price}`);
-grid.innerHTML+=`<div class="card"><img src="${p.img}"><p style="font-size:13px;margin-top:5px">${p.name} ${i<myArts.length?'<span style="background:green;color:#fff;font-size:9px;padding:2px 4px;border-radius:3px">NEW</span>':''}</p><p style="font-weight:bold">₹${p.price}</p><a class="buy" href="${wa}">Buy Now</a></div>`;
-});
-}
-function clearAll(){if(confirm('সকলো Upload Delete কৰিম নে?')){localStorage.removeItem('venusArts'); render();}}
-render();
-</script>
-</body></html>
+let products=[...JSON.parse(localStorage.getItem('venusArts')||'[]'),...defaultProducts];
+let cart=JSON.parse(localStorage.getItem('venusCart')||'[]');
+let wishlist=JSON.parse(localStorage.getItem('venusWish')||'[]');
+let currentList=[...products];let slideIndex=0;
+function initCats(){let cats=['all','radha','abstract','village','modern','portrait'];let cDiv=document.getElementById('cats');cDiv.innerHTML='';cats.forEach(c=>{cDiv.innerHTML+=`<div onclick="filterCat('${c}')"><img src="https://picsum.photos/80/80?random=${c.length*10}"><span>${c.toUpperCase()}</span></div>`});}
+function render(list){let g=document.getElementById('grid');g.innerHTML='';currentList=list;document.getElementById('resultCount').innerText=list.length+' items';list.forEach(p=>{let isWish=wishlist.includes(p.id);g.innerHTML+=`<div class="card"><div class="heart ${isWish?'active':''}" onclick="toggleWish(${p.id});event.stopPropagation()">♡</div><div onclick="openProduct(${p.id})"><img src="${p.img}"><p style="font-size:13px;margin-top:4px;height:34px;overflow:hidden">${p.name}</p><p><span class="rating">${p.rating} ★</span><span style="color:gray;font-size:11px">(${p.reviews})</span></p><p><span class="price">₹${p.price}</span><span class="mrp">₹${p.mrp}</span><span class="off">${p.off}% off</span></p></div><div class="buyRow"><button class="buyBtn addCart" onclick="addToCart(${p.id})">Add to Cart</button><button class="buyBtn buyNow" style="flex:0.7" onclick="buyNow(${p.id})">Buy</button></div></div>`;});updateCounts();}
+function doSearch(){let q=document.getElementById('searchInput').value.toLowerCase();if(!q){document.getElementById('suggest').style.display='none';render(products);return}let filtered=products.filter(p=>p.name.toLowerCase().includes(q)||p.cat.includes(q));let sug=document.getElementById('suggest');sug.innerHTML='';sug.style.display='block';filtered.slice(0,5).forEach(p=>{sug.innerHTML+=`<div onclick="openProduct(${p.id});document.getElementById('suggest').style.display='none'">${p.name}</div>`});render(filtered);}
+function filterCat(c){if(c=='all')render(products);else render(products.filter(p=>p.cat==c))}
+function filterPrice(min,max){render(products.filter(p=>p.price>=min&&p.price<=max))}
+function filterRating(r){render(products.filter(p=>p.rating>=r))}
+function filterDiscount(d){render(products.filter(p=>p.off>=d))}
+function sortBy(v){let l=[...currentList];if(v=='low')l.sort((a,b)=>a.price-b.price);if(v=='high')l.sort((a,b)=>b.price-a.price);if(v=='pop')l.sort((a,b)=>b.reviews-a.reviews);if(v=='new')l.reverse();render(l);}
+function openProduct(id){let p=products.find(x=>x.id==id);document.getElementById('productModal').style.display='block';document.getElementById('pBox').innerHTML=`<div><img src="${p.img}" id="mainImg"><div style="display:flex;gap:6px;padding:8px"><img src="${p.img}" style="width:60px;height:60px;object-fit:cover;border:1px solid #2874f0" onclick="document.getElementById('mainImg').src='${p.img}'"><img src="https://picsum.photos/200/200?random=${p.id+10}" style="width:60px;height:60px;object-fit:cover" onclick="document.getElementById('mainImg').src='https://picsum.photos/200/200?random=${p.id+10}'"></div></div><div class="pDetail"><p style="color:gray;font-size:12px">${p.cat.toUpperCase()}</p><h2>${p.name}</h2><p><span class="rating">${p.rating} ★</span> ${p.reviews} Ratings & 234 Reviews</p><p style="margin-top:8px"><span style="font-size:22px;font-weight:700">₹${p.price}</span><span class="mrp">₹${p.mrp}</span><span class="off">${p.off}% off</span></p><p style="font-size:13px;color:#388e3c;margin-top:4px">Free Delivery</p><div class="pinBox"><input id="pinCheck" placeholder="Enter PIN Eg 785112"><button onclick="checkPin()">Check</button></div><p id="pinRes" style="font-size:12px"></p><p style="font-size:13px;margin-top:10px"><b>Description:</b> ${p.desc}</p><p style="font-size:13px;margin-top:8px"><b>Seller:</b> VENUS ART GALLERY, TEOK</p><div style="display:flex;gap:8px;margin-top:14px"><button class="buyBtn addCart" style="padding:14px" onclick="addToCart(${p.id})">🛒 ADD TO CART</button><button class="buyBtn buyNow" style="padding:14px" onclick="buyNow(${p.id})">⚡ BUY NOW</button></div><div style="margin-top:12px"><h4>Reviews</h4><p style="font-size:13px">⭐⭐⭐⭐⭐ Beautiful art! - Rina, Teok</p><p style="font-size:13px">⭐⭐⭐⭐ Good packaging - Amit, Jorhat</p></div><p style="text-align:center;color:gray;cursor:pointer;margin-top:12px" onclick="document.getElementById('productModal').style.display='none'">Close</p></div>`;}
+function checkPin(){let pin=document.getElementById('pinCheck').value;let res=document.getElementById('pinRes');if(pin.startsWith('785'))res.innerHTML='<span style="color:green">✓ Delivery by Tomorrow, Free</span>';else if(pin.length==6)res.innerHTML='<span style="color:orange">Delivery in 3-4 days, ₹40</span>';else res.innerHTML='<span style="color:red">Enter valid PIN</span>';}
+function addToCart(id){if(!cart.includes(id))cart.push(id);localStorage.setItem('venusCart',JSON.stringify(cart));renderCart();updateCounts();openPanel('cartPanel')}
+function buyNow(id){addToCart(id);checkout(id)}
+function toggleWish(id){if(wishlist.includes(id))wishlist=wishlist.filter(x=>x!=id);else wishlist.push(id);localStorage.setItem('venusWish',JSON.stringify(wishlist));render(currentList);renderWish()}
+function renderCart(){let cDiv=document.getElementById('cartItems');cDiv.innerHTML='';let total=0,mrpTotal=0;cart.forEach(id=>{let p=products.find(x=>x.id==id);if(!p)return;total+=p.price;mrpTotal+=p.mrp;cDiv.innerHTML+=`<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #eee"><img src="${p.img}" style="width:70px;height:70px;object-fit:cover"><div style="flex:1"><p style="font-size:13px">${p.name}</p><p><span class="price">₹${p.price}</span><span class="mrp">₹${p.mrp}</span></p></div><span onclick="removeCart(${id})" style="cursor:pointer">✕</span></div>`});document.getElementById('priceDetail').innerHTML=`Price (${cart.length} items): ₹${mrpTotal}<br>Discount: -₹${mrpTotal-total}<br>Delivery: <span style="color:green">FREE</span><br><b>Total: ₹${total}</b>`;document.getElementById('cCount2').innerText=cart.length;}
+function removeCart(id){cart=cart.filter(x=>x!=id);localStorage.setItem('venusCart',JSON.stringify(cart));renderCart();updateCounts()}
+function renderWish(){let wDiv=document.getElementById('wishItems');wDiv.innerHTML='';wishlist.forEach(id=>{let p=products.find(x=>x.id==id);if(!p)return;wDiv.innerHTML+=`<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #eee"><img src="${p.img}" style="width:60px;height:60px"><div style="flex:1"><p style="font-size:13px">${p.name}</p><p class="price">₹${p.price}</p></div><button onclick="addToCart(${id})" style="background:#fb641b;color:#fff;border:0;padding:6px 10px;border-radius:2px">Add</button></div>`});}
+function updateCounts(){document.getElementById('cCount').innerText=cart.length;document.getElementById('wCount').innerText=wishlist.length}
+function checkout(singleId){let user=localStorage.getItem('v_user')||'Customer';let phone=localStorage.getItem('v_phone')||'';let addr=localStorage.getItem('v_addr')||'';if(!user||user=='Customer'){alert('Please Login first');openLogin();return}let items=singleId?[products.find(x=>x.id==singleId)]:cart.map(id=>products.find(x=>x.id==id));let total=items.reduce((s,p)=>s+p.price,0);let msg=`*NEW ORDER - VENUS GALLERY*%0AName: ${user}%0APhone: ${phone}%0AAddress: ${addr}%0A%0AItems:%0A${items.map(p=>`- ${p.name} ₹${p.price}`).join('%0A')}%0A%0ATotal: ₹${total}%0APayment: COD`;let orders=JSON.parse(localStorage.getItem('venusOrders')||'[]');orders.push({date:new Date().toLocaleString(),items,total,user});localStorage.setItem('venusOrders',JSON.stringify(orders));window.open('https://wa.me/919101573700?text='+msg,'_blank');}
+function openPanel(id){document.getElementById(id).classList.add('open');if(id=='cartPanel')renderCart();if(id=='wishlistPanel')renderWish();if(id=='ordersPanel')renderOrders()}
+function closePanel(id){document.getElementById(id).classList.remove('open')}
+function renderOrders(){let div=document.getElementById('orderList');let orders=JSON.parse(localStorage.getItem('venusOrders')||'[]');div.innerHTML=orders.length?'':'No orders yet';order
