@@ -1,89 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VENUS ART GALLERY - TEOK | Online Art Store</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VENUS ART GALLERY, TEOK</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box} body{font-family:Roboto,Arial;background:#f1f3f6}
-.top{background:#2874f0;color:#fff;padding:12px 15px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
-.logo{font-weight:bold;font-size:20px;font-style:italic} .logo span{color:#ffe500}
-.search{flex:1;margin:0 15px;background:#fff;border-radius:2px;display:flex}
-.search input{flex:1;padding:10px;border:0;outline:0} .search button{background:#fff;border:0;padding:0 15px;color:#2874f0;font-weight:bold}
-.cart{background:#fff;color:#2874f0;padding:6px 15px;border-radius:2px;font-weight:bold;text-decoration:none}
-.banner{background:#fff;padding:15px;margin:10px;border-radius:2px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,0.1)}
-.banner h2{color:#212121} .banner p{color:#388e3c;margin-top:5px;font-weight:bold}
-.grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;padding:10px}
-.card{background:#fff;padding:10px;border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,0.1);text-align:center;transition:0.2s}
-.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.2)}
-.card img{width:100%;height:180px;object-fit:contain}
-.title{font-size:14px;margin-top:10px;height:36px;overflow:hidden}
-.rating{background:#388e3c;color:#fff;font-size:12px;padding:2px 6px;border-radius:10px;display:inline-block;margin-top:6px}
-.price-row{margin-top:8px} .price{font-size:18px;font-weight:bold} .mrp{font-size:13px;color:#878787;text-decoration:line-through;margin-left:5px} .off{font-size:13px;color:#388e3c;margin-left:5px}
-.buy-btn{display:block;margin-top:10px;background:#ff9f00;color:#fff;padding:10px;border-radius:2px;text-decoration:none;font-weight:bold;font-size:14px}
-.buy-btn2{background:#fb641b;margin-top:6px}
-.footer{background:#172337;color:#fff;padding:25px;text-align:center;margin-top:20px}
-</style>
-</head>
-<body>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Roboto;background:#f1f3f6}
+.top{background:#2874f0;color:#fff;padding:12px 15px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99}
+.logo{font-weight:bold;font-size:18px}.logo span{color:#ffe500}
+.btn{background:#fff;color:#2874f0;padding:6px 12px;border-radius:2px;font-weight:bold;border:0;cursor:pointer;font-size:13px}
+.hero{background:#fff;margin:10px;padding:15px;text-align:center}
+.grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;padding:10px}
+.card{background:#fff;padding:10px;border-radius:3px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.card img{width:100%;height:170px;object-fit:cover;border-radius:2px}
+.price{color:#000;font-weight:bold}.mrp{color:#878787;text-decoration:line-through;margin-left:5px;font-size:13px}.off{color:#388e3c;margin-left:5px;font-size:13px}
+.buy{display:block;margin-top:8px;background:#fb641b;color:#fff;padding:8px;text-decoration:none;border-radius:2px;font-weight:bold;font-size:13px}
+#loginBox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:100}
+.form{background:#fff;padding:25px;border-radius:15px;width:90%;max-width:350px}
+.form h2{text-align:center;color:#1a237e;margin-bottom:5px}.form input{width:100%;padding:13px;margin:7px 0;border:1.5px solid #ccc;border-radius:10px}
+.form button{width:100%;padding:13px;background:#ff5a00;color:#fff;border:0;border-radius:10px;font-size:18px;font-weight:bold;margin-top:10px}
+</style></head><body>
 
 <div class="top">
-  <div class="logo">VENUS <span>Gallery</span></div>
-  <div class="search"><input placeholder="Search for Paintings, Art..."><button>Search</button></div>
-  <a class="cart" href="https://wa.me/919101573700">Cart</a>
+<div class="logo">VENUS <span>Gallery</span></div>
+<div>
+<span id="uName" style="font-size:13px;margin-right:8px"></span>
+<button class="btn" id="lBtn" onclick="openL()">Login</button>
+<button class="btn" id="loBtn" onclick="logout()" style="display:none">Logout</button>
+</div>
 </div>
 
-<div class="banner">
-  <h2>VENUS ART GALLERY, TEOK</h2>
-  <p>Biggest Art Sale | 50% Off | Free Delivery in Jorhat</p>
-  <p style="color:#878787;font-size:13px;margin-top:4px">📞 9101573700</p>
+<div id="loginBox">
+<div class="form">
+<h2>Login</h2><p style="text-align:center;color:gray;font-size:12px;margin-bottom:15px">Welcome! Address দি Login কৰক</p>
+<input id="name" placeholder="তোমাৰ নাম">
+<input id="phone" placeholder="Mobile Number" type="number">
+<input id="addr" placeholder="তোমাৰ Address - Teok, Jorhat">
+<button onclick="doLogin()">Login</button>
+<p style="text-align:center;font-size:12px;color:gray;margin-top:10px" onclick="closeL()">Close</p>
+</div>
+</div>
+
+<div class="hero">
+<h2 id="welcome">VENUS ART GALLERY, TEOK</h2>
+<p id="showAddr" style="color:#388e3c;margin-top:5px;font-size:14px">Best Canvas Paintings | Login কৰি Address Save কৰক</p>
 </div>
 
 <div class="grid">
-  <!-- Product 1 -->
-  <div class="card">
-    <img src="art1.jpg" onerror="this.src='https://picsum.photos/300/300?random=1'">
-    <div class="title">Radha Krishna Handmade Painting</div>
-    <div><span class="rating">4.5 ★</span> <span style="font-size:12px;color:#878787">(124)</span></div>
-    <div class="price-row"><span class="price">₹1,499</span><span class="mrp">₹2,999</span><span class="off">50% off</span></div>
-    <a class="buy-btn" href="https://wa.me/919101573700?text=I%20want%20art1%20Rs1499">Add to Cart</a>
-    <a class="buy-btn buy-btn2" href="https://wa.me/919101573700?text=Buy%20Now%20art1">Buy Now</a>
-  </div>
-
-  <!-- Product 2 -->
-  <div class="card">
-    <img src="art2.jpg" onerror="this.src='https://picsum.photos/300/300?random=2'">
-    <div class="title">Modern Abstract Canvas Art</div>
-    <div><span class="rating">4.3 ★</span> <span style="font-size:12px;color:#878787">(89)</span></div>
-    <div class="price-row"><span class="price">₹1,999</span><span class="mrp">₹3,499</span><span class="off">42% off</span></div>
-    <a class="buy-btn" href="https://wa.me/919101573700?text=I%20want%20art2%20Rs1999">Add to Cart</a>
-    <a class="buy-btn buy-btn2" href="https://wa.me/919101573700?text=Buy%20Now%20art2">Buy Now</a>
-  </div>
-
-  <!-- Product 3 -->
-  <div class="card">
-    <img src="art3.jpg" onerror="this.src='https://picsum.photos/300/300?random=3'">
-    <div class="title">Village Scenery Watercolor</div>
-    <div><span class="rating">4.7 ★</span> <span style="font-size:12px;color:#878787">(210)</span></div>
-    <div class="price-row"><span class="price">₹999</span><span class="mrp">₹1,899</span><span class="off">47% off</span></div>
-    <a class="buy-btn" href="https://wa.me/919101573700?text=I%20want%20art3%20Rs999">Add to Cart</a>
-    <a class="buy-btn buy-btn2" href="https://wa.me/919101573700?text=Buy%20Now%20art3">Buy Now</a>
-  </div>
-
-  <!-- Product 4 -->
-  <div class="card">
-    <img src="art4.jpg" onerror="this.src='https://picsum.photos/300/300?random=4'">
-    <div class="title">Ganesha Art with Frame</div>
-    <div><span class="rating">4.8 ★</span> <span style="font-size:12px;color:#878787">(342)</span></div>
-    <div class="price-row"><span class="price">₹2,499</span><span class="mrp">₹4,000</span><span class="off">37% off</span></div>
-    <a class="buy-btn" href="https://wa.me/919101573700?text=I%20want%20art4%20Rs2499">Add to Cart</a>
-    <a class="buy-btn buy-btn2" href="https://wa.me/919101573700?text=Buy%20Now%20art4">Buy Now</a>
-  </div>
+<div class="card"><img src="art1.jpg" onerror="this.src='https://picsum.photos/400/400?random=11'"><p style="font-size:14px;margin-top:5px">Radha Krishna</p><p><span class="price">₹1,499</span><span class="mrp">₹2,999</span><span class="off">50% off</span></p><a class="buy" id="b1" href="https://wa.me/919101573700?text=Buy%20Radha%20Krishna">Buy Now</a></div>
+<div class="card"><img src="art2.jpg" onerror="this.src='https://picsum.photos/400/400?random=12'"><p style="font-size:14px;margin-top:5px">Abstract Art</p><p><span class="price">₹1,999</span><span class="mrp">₹3,999</span><span class="off">50% off</span></p><a class="buy" id="b2" href="https://wa.me/919101573700?text=Buy%20Abstract">Buy Now</a></div>
+<div class="card"><img src="art3.jpg" onerror="this.src='https://picsum.photos/400/400?random=13'"><p style="font-size:14px;margin-top:5px">Village Scenery</p><p><span class="price">₹1,299</span><span class="mrp">₹2,599</span><span class="off">50% off</span></p><a class="buy" id="b3" href="https://wa.me/919101573700?text=Buy%20Village">Buy Now</a></div>
+<div class="card"><img src="art4.jpg" onerror="this.src='https://picsum.photos/400/400?random=14'"><p style="font-size:14px;margin-top:5px">Modern Art</p><p><span class="price">₹2,499</span><span class="mrp">₹4,999</span><span class="off">50% off</span></p><a class="buy" id="b4" href="https://wa.me/919101573700?text=Buy%20Modern">Buy Now</a></div>
 </div>
 
-<div class="footer">
-  <h3 style="color:#ffe500">VENUS ART GALLERY</h3>
-  <p>Teok, Jorhat, Assam - 785112<br>Call: 9101573700 | All India Delivery</p>
-</div>
-
-</body>
-  </html>
+<script>
+function openL(){document.getElementById('loginBox').style.display='flex'}
+function closeL(){document.getElementById('loginBox').style.display='none'}
+function doLogin(){
+let n=document.getElementById('name').value; let p=document.getElementById('phone').value; let a=document.getElementById('addr').value;
+if(!n){alert('নাম দিয়া');return}
+localStorage.setItem('v_user',n); localStorage.setItem('v_phone',p); localStorage.setItem('v_addr',a);
+update(); closeL();
+}
+function update(){
+let u=localStorage.getItem('v_user'); let ph=localStorage.getItem('v_phone'); let ad=localStorage.getItem('v_addr');
+if(u){
+document.getElementById('uName').innerText='Hi, '+u;
+document.getElementById('welcome').innerText='Welcome, '+u+'!';
+document.getElementById('showAddr').innerText='📍 '+ad+' | 📞 '+ph;
+document.getElementById('lBtn').style.display='none'; document.getElementById('loBtn').style.display='inline-block';
+let msg=`Hi Venus, I am ${u} (${ph}), Address: ${ad}. I want to buy `;
+document.getElementById('b1').href='https://wa.me/919101573700?text='+encodeURIComponent(msg+'Radha Krishna Rs1499');
+document.getElementById('b2').href='https://wa.me/919101573700?text='+encodeURIComponent(msg+'Abstract Rs1999');
+document.getElementById('b3').href='https://wa.me/919101573700?text='+encodeURIComponent(msg+'Village Rs1299');
+document.getElementById('b4').href='https://wa.me/919101573700?text='+encodeURIComponent(msg+'Modern Rs2499');
+}}
+function logout(){localStorage.clear(); location.reload()}
+update();
+</script>
+</body></html>
