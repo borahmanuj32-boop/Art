@@ -3,120 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VENUS ART GALLERY TEOK | Manuj Kumar Borah | 9101573700</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<title>My Final Gallery</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#f8f5f0;color:#222}
-.hero{background:linear-gradient(120deg,#0f0c29,#302b63,#24243e);color:#fff;padding:50px 20px;text-align:center;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:-50px;left:-50px;width:200px;height:200px;background:#ff0055;filter:blur(80px);opacity:.5}
-.hero h1{font-size:42px;font-weight:800;letter-spacing:2px}
-.hero h1 span{color:#ffcc00}
-.hero .teok{font-size:28px;font-weight:800;letter-spacing:8px;color:#ffcc00;margin:5px 0}
-.hero .owner{margin-top:15px;font-size:16px;opacity:.9}
-.hero .badge{display:inline-block;margin-top:12px;background:#ffcc00;color:#000;padding:6px 18px;border-radius:30px;font-weight:800;font-size:13px}
-.navbar{display:flex;justify-content:center;gap:10px;padding:14px;background:#fff;position:sticky;top:0;z-index:99;box-shadow:0 5px 20px rgba(0,0,0,.08)}
-.navbar button{border:1px solid #ddd;background:#fff;padding:9px 18px;border-radius:30px;font-weight:600;cursor:pointer;transition:.2s}
-.navbar button.active,.navbar button:hover{background:#302b63;color:#fff;border-color:#302b63}
-.container{max-width:1100px;margin:0 auto;padding:15px}
-.card{background:#fff;border-radius:20px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.06);margin-bottom:18px}
-.upload-title{font-weight:800;font-size:18px;margin-bottom:10px}
-input{width:100%;padding:14px 16px;margin:7px 0;border:1.5px solid #eee;border-radius:14px;font-size:15px;background:#fafafa}
-.btn-main{width:100%;padding:15px;background:linear-gradient(90deg,#ff0055,#ff8a00);color:#fff;border:none;border-radius:14px;font-weight:800;font-size:16px;cursor:pointer;margin-top:8px}
-.gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(min-width:768px){.gallery{grid-template-columns:1fr 1fr 1fr 1fr}}
-.art-card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,.07);transition:.3s;position:relative}
-.art-card:hover{transform:translateY(-5px)}
-.art-card img{width:100%;height:240px;object-fit:cover}
-.art-info{padding:12px}
-.art-price{position:absolute;top:10px;left:10px;background:#111;color:#ffcc00;padding:5px 12px;border-radius:20px;font-weight:800;font-size:13px}
-.art-name{font-weight:700;font-size:14px}
-.art-artist{font-size:11px;opacity:.6}
-.buy{width:100%;background:#111;color:#fff;border:none;padding:10px;border-radius:10px;font-weight:700;margin-top:8px;cursor:pointer}
-.buy:hover{background:#25D366}
-.wa-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 8px 20px rgba(0,0,0,.3);text-decoration:none;z-index:100}
-.footer{text-align:center;padding:30px;background:#111;color:#fff;margin-top:30px;border-radius:30px 30px 0 0}
-.footer a{color:#ffcc00;text-decoration:none;font-weight:800}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial;background:#fafafa;color:#222}
+.header{background:#111;color:#fff;padding:20px;text-align:center}
+.header h1{font-size:24px}
+.header p{opacity:0.7;margin-top:5px}
+.gallery{padding:15px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;max-width:1000px;margin:20px auto}
+.gallery img{width:100%;height:200px;object-fit:cover;border-radius:14px;cursor:pointer;transition:0.3s;box-shadow:0 4px 10px rgba(0,0,0,0.1)}
+.gallery img:hover{transform:scale(1.03)}
+.footer{text-align:center;padding:30px;opacity:0.5;font-size:14px}
+/* Lightbox */
+#lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;justify-content:center;align-items:center;z-index:999}
+#lightbox img{max-width:90%;max-height:85%;border-radius:10px}
 </style>
 </head>
 <body>
 
-<div class="hero">
-<h1>VENUS <span>ART GALLERY</span></h1>
-<div class="teok">TEOK</div>
-<div class="owner">Manuj Kumar Borah | Teok, Jorhat, Assam<br>📞 +91 9101573700</div>
-<div class="badge">★ Professional Painting Show & Sale ★</div>
+<div class="header">
+  <h1>📸 My Fixed Gallery</h1>
+  <p>আপোনাৰ সকলো ফটো ইয়াত দেখা পাব</p>
 </div>
 
-<div class="navbar">
-<button class="active" onclick="filterArt('all',this)">সকলো Art</button>
-<button onclick="filterArt('new',this)">নতুন</button>
-<button onclick="filterArt('low',this)">₹500 তলত</button>
-<button onclick="filterArt('high',this)">₹1000+</button>
-</div>
+<div class="gallery" id="gallery"></div>
 
-<div class="container">
-<div class="card">
-<div class="upload-title">➕ VENUS ত নতুন Painting যোগ কৰক</div>
-<input id="an" placeholder="Artist Name - Manuj Kumar Borah">
-<input id="at" placeholder="Painting ৰ নাম - Example: Sunset in Teok">
-<input id="ap" type="number" placeholder="দাম - Example: 1500">
-<input id="af" type="file" accept="image/*" multiple>
-<button class="btn-main" onclick="uploadArt()">🖼️ Gallery ত Publish কৰক</button>
-</div>
+<div class="footer">Made with ❤️ - Update ফটো Cloudinary ত</div>
 
-<div class="card">
-<h3 id="countTitle" style="margin-bottom:12px">🖼️ VENUS Collection</h3>
-<div id="gallery" class="gallery"></div>
-<p id="empty" style="text-align:center;padding:40px;opacity:.5">এতিয়াও কোনো Painting যোগ হোৱা নাই<br>ওপৰত ফটো যোগ কৰক</p>
-</div>
-</div>
-
-<a class="wa-float" href="https://wa.me/919101573700?text=Namaste%20VENUS%20ART%20GALLERY%20TEOK%20🙏" target="_blank">💬</a>
-
-<div class="footer">
-<h2>VENUS ART GALLERY TEOK</h2>
-<p>Owner: Manuj Kumar Borah</p>
-<p>📍 Teok, Jorhat, Assam - 785112</p>
-<p style="margin-top:10px">Order কৰিবলৈ WhatsApp কৰক:<br><a href="tel:919101573700">+91 9101573700</a></p>
-<p style="margin-top:15px;font-size:11px;opacity:.5">© 2026 VENUS ART GALLERY TEOK - All Rights Reserved</p>
-</div>
+<div id="lightbox" onclick="this.style.display='none'"><img id="lightImg"></div>
 
 <script>
-let myNum="919101573700";
-let arts=JSON.parse(localStorage.getItem('venus_pro_teok')||'[]');
-let current='all';
-function save(){localStorage.setItem('venus_pro_teok',JSON.stringify(arts))}
-function filterArt(t,b){current=t;document.querySelectorAll('.navbar button').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()}
-function render(){
-let box=document.getElementById('gallery');
-let emp=document.getElementById('empty');
-let ct=document.getElementById('countTitle');
-box.innerHTML='';
-let f=arts.filter(a=>{
-if(current=='low')return +a.p<=500;
-if(current=='high')return +a.p>=1000;
-if(current=='new')return a.isNew;
-return true});
-if(!f.length){emp.style.display='block';ct.innerText=`🖼️ VENUS Collection (0)`;return}
-emp.style.display='none';
-ct.innerText=`🖼️ VENUS Collection - ${f.length} খন Painting`;
-f.forEach(a=>{
-let i=arts.indexOf(a);
-box.innerHTML+=`<div class=art-card><div class=art-price>₹${a.p}</div><img src="${a.img}"><div class=art-info><div class=art-name>${a.t}</div><div class=art-artist>by ${a.a}</div><button class=buy onclick="buyArt(${i})">WhatsApp ত কিনক</button></div></div>`
-})}
-function uploadArt(){
-let a=document.getElementById('an').value||'Manuj Kumar Borah';
-let t=document.getElementById('at').value||'VENUS Art';
-let p=document.getElementById('ap').value||'999';
-let fs=document.getElementById('af').files;
-if(!fs.length){alert('অনুগ্ৰহ কৰি Painting ৰ ফটো Select কৰক');return}
-for(let f of fs){let r=new FileReader();r.onload=e=>{arts.unshift({t,a,p,img:e.target.result,isNew:true});save();render()};r.readAsDataURL(f)}
-alert('✅ VENUS Gallery ত Publish হল!')}
-function buyArt(i){
-let txt=`🙏 Namaste VENUS ART GALLERY TEOK\n\nMoi ei Painting tu kinibo bisaru:\n🎨 Name: ${arts[i].t}\n💰 Price: Rs.${arts[i].p}\n👨‍🎨 Artist: ${arts[i].a}\n\nPlease details jonabo.\n${location.href}`;
-window.open(`https://wa.me/${myNum}?text=${encodeURIComponent(txt)}`,'_blank')}
-render();
-</script>
-</body>
-  </html>
+// ===== CONFIG - মাথোঁ এইখিনি Change কৰক =====
+const CLOUD_NAME = "dlccsnkoo"; // আপোনাৰ Cloudinary Cloud Name
+const FOLDER = "my-gallery"; // আপোনাৰ Folder ৰ নাম
+const photos = [
+  "photo1","photo2","photo3","photo4","photo5","photo6",
+  "photo7","photo8","photo9","photo10"
+];
+// ==========================================
+
+const galleryDiv = document.getElementById("gallery");
+const lightbox = document.getElementById("lightbox");
+const lightImg = document.getElementById("lightImg");
+
+function load(){
+  galleryDiv.innerHTML = "";
+  photos.forEach(name => {
+    const url = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/q_auto,f_auto,w_500/${FOLDER}/${name}`;
+    const img = document.createElement("img");
+    img.src = url;
+    img.loading = "lazy";
+    img.onerror = function(){ this.style.display="none" } // ফটো নাথাক
