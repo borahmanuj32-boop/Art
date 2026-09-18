@@ -7,7 +7,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
 body{background:#f1f3f6}
-.header{background:#2874f0;position:sticky;top:0;z-index:1000;padding:10px 8px;display:flex;align-items:center;gap:8px;color:#fff;flex-wrap:wrap}
+.header{background:#2874f0;position:sticky;top:0;z-index:1000;padding:10px 8px;display:flex;align-items:center;gap:8px;color:#fff}
 .hamburger{font-size:28px;cursor:pointer}
 .logo{font-weight:900;font-size:15px;line-height:13px}
 .logo span{color:#ffe500;font-size:10px;display:block}
@@ -23,18 +23,17 @@ body{background:#f1f3f6}
 .overlay.show{display:block}
 .sideHead{background:#2874f0;color:#fff;padding:15px;display:flex;justify-content:space-between}
 .sideUser{background:#0d47a1;color:#fff;padding:12px;font-size:13px}
-.sideLink{display:block;padding:14px 16px;border-bottom:1px solid #eee;color:#333;text-decoration:none;cursor:pointer}
+.sideLink{display:block;padding:14px 16px;border-bottom:1px solid #eee;color:#333;cursor:pointer}
 .slider{margin:8px;background:#fff;border-radius:4px;overflow:hidden;position:relative;height:200px}
 .slides{display:flex;transition:.5s;height:100%}
 .slide{min-width:100%;height:100%;position:relative}
 .slide img{width:100%;height:100%;object-fit:cover}
-/* FIXED - SPACE ADDED - NOW WILL WORK 100% */
-.slideAdmin{position:absolute;top:8px;right:8px;display:none;gap:6px;z-index:20}
+.slideAdmin{position:absolute;top:8px;right:8px;display:none!important;gap:6px;z-index:20}
 body.adminMode.slideAdmin{display:flex!important}
-.slideAdmin button{padding:6px 10px;border:0;border-radius:4px;color:#fff;font-size:12px;cursor:pointer;font-weight:700;box-shadow:0 2px 5px rgba(0,0,0,.5)}
+.slideAdmin button{padding:6px 10px;border:0;border-radius:4px;color:#fff;font-size:12px;font-weight:700;cursor:pointer}
 .editS{background:#2874f0}.delS{background:#ff6161}
 .dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:6px}
-.dots span{width:8px;height:8px;background:rgba(255,255,255,.6);border-radius:50%;cursor:pointer}
+.dots span{width:8px;height:8px;background:rgba(255,255,255,.6);border-radius:50%}
 .dots span.active{background:#fff}
 .cats{background:#fff;display:flex;gap:8px;padding:10px;overflow:auto;margin:8px 8px 0 8px}
 .cats button{border:1px solid #ddd;padding:6px 16px;border-radius:20px;background:#fff;cursor:pointer;font-weight:600}
@@ -52,8 +51,8 @@ body.adminMode.slideAdmin{display:flex!important}
 .actions button{padding:8px 2px;border:0;border-radius:2px;font-weight:700;font-size:11px;cursor:pointer}
 .addCart{background:#ff9f00;color:#fff}
 .buyNow{background:#fb641b;color:#fff}
-.editBtn{background:#2874f0;color:#fff;display:none}
-.delBtn{background:#ff6161;color:#fff;display:none}
+.editBtn{background:#2874f0;color:#fff;display:none!important}
+.delBtn{background:#ff6161;color:#fff;display:none!important}
 body.adminMode.editBtn{display:block!important}
 body.adminMode.delBtn{display:block!important}
 .footer{background:#000;color:#fff;padding:25px 15px;text-align:center;margin-top:10px}
@@ -75,93 +74,30 @@ body.adminMode.addBtn{display:block!important}
 </style>
 </head>
 <body>
-<div class="header">
-<div class="hamburger" onclick="openSide()">☰</div>
-<div class="logo">VENUS ART<span>GALLERY TEOK</span></div>
-<div class="searchBox"><input id="searchInput" placeholder="Search Art..." oninput="searchArt()"></div>
-<div id="userLabel"></div>
-<div class="navBtns">
-<a href="http://manuj.art.blog" target="_blank">Blog</a>
-<button id="loginMainBtn" onclick="openLogin()">লগইন কৰক</button>
-<button id="logoutMainBtn" onclick="logoutAll()">Logout</button>
-<button onclick="openCart()">🛒 <span id="cartCount">0</span></button>
-</div>
-</div>
+<div class="header"><div class="hamburger" onclick="openSide()">☰</div><div class="logo">VENUS ART<span>GALLERY TEOK</span></div><div class="searchBox"><input id="searchInput" placeholder="Search Art..." oninput="searchArt()"></div><div id="userLabel"></div><div class="navBtns"><a href="http://manuj.art.blog" target="_blank">Blog</a><button id="loginMainBtn" onclick="openLogin()">লগইন</button><button id="logoutMainBtn" onclick="logoutAll()">Logout</button><button onclick="openCart()">🛒 <span id="cartCount">0</span></button></div></div>
 <div class="overlay" id="overlay" onclick="closeSide()"></div>
-<div class="sideMenu" id="sideMenu">
-<div class="sideHead"><b>☰ VENUS MENU</b><span onclick="closeSide()" style="cursor:pointer">✕</span></div>
-<div class="sideUser" id="sideUser">Hello, Guest</div>
-<div class="sideLink" onclick="filterCat('all');closeSide()">🏠 All Art</div>
-<div class="sideLink" onclick="filterCat('Traditional');closeSide()">🎨 Traditional</div>
-<div class="sideLink" onclick="filterCat('Village');closeSide()">🏡 Village</div>
-<div class="sideLink" onclick="filterCat('Modern');closeSide()">🖼️ Modern</div>
-<div class="sideLink" onclick="openLogin();closeSide()">👤 Login</div>
-<div class="sideLink" onclick="openAdmin();closeSide()">⚙️ Admin Login</div>
-<div class="sideLink" onclick="openCart();closeSide()">🛒 Cart (<span id="sideCart">0</span>)</div>
-<div class="sideLink" style="color:#ff6161" onclick="logoutAll();closeSide()">🚪 Logout</div>
-</div>
+<div class="sideMenu" id="sideMenu"><div class="sideHead"><b>☰ MENU</b><span onclick="closeSide()">✕</span></div><div class="sideUser" id="sideUser">Hello Guest</div><div class="sideLink" onclick="filterCat('all');closeSide()">All Art</div><div class="sideLink" onclick="filterCat('Traditional');closeSide()">Traditional</div><div class="sideLink" onclick="filterCat('Village');closeSide()">Village</div><div class="sideLink" onclick="filterCat('Modern');closeSide()">Modern</div><div class="sideLink" onclick="openLogin();closeSide()">Login</div><div class="sideLink" onclick="openAdmin();closeSide()">Admin</div><div class="sideLink" onclick="openCart();closeSide()">Cart (<span id="sideCart">0</span>)</div><div class="sideLink" style="color:#ff6161" onclick="logoutAll();closeSide()">Logout</div></div>
 <div class="slider"><div class="slides" id="slides"></div><div class="dots" id="dots"></div></div>
-<div class="cats">
-<button class="active" onclick="filterCat('all',this)">All</button>
-<button onclick="filterCat('Traditional',this)">Traditional</button>
-<button onclick="filterCat('Village',this)">Village</button>
-<button onclick="filterCat('Modern',this)">Modern</button>
-</div>
+<div class="cats"><button class="active" onclick="filterCat('all',this)">All</button><button onclick="filterCat('Traditional',this)">Traditional</button><button onclick="filterCat('Village',this)">Village</button><button onclick="filterCat('Modern',this)">Modern</button></div>
 <div class="sectionHead"><span>Best Artworks</span><span id="itemCount">0 Items</span></div>
 <div class="productGrid" id="productGrid"></div>
-<div class="footer">
-<h2>VENUS ART GALLERY TEOK</h2>
-<p>Design - Manuj venus</p>
-<p>Phone - <a href="tel:9101573700" style="color:#4da6ff">9101573700</a></p>
-<p>Copyright - VENUS ART GALLERY TEOK</p>
-<div style="margin-top:12px;border-top:1px solid #333;padding-top:10px;font-size:12px;color:#aaa">All Rights Reserved © 2026 | WhatsApp: 9101573700</div>
-</div>
+<div class="footer"><h2>VENUS ART GALLERY TEOK</h2><p>Design - Manuj venus</p><p>Phone - <a href="tel:9101573700" style="color:#4da6ff">9101573700</a></p><p>Copyright - VENUS ART GALLERY TEOK</p><div style="margin-top:12px;border-top:1px solid #333;padding-top:10px;font-size:12px;color:#aaa">WhatsApp Order: 9101573700</div></div>
 <div class="toast" id="toast"></div>
 <button class="addBtn" onclick="addNewSlide()">+ Add Slide</button>
 <button class="addBtn" style="bottom:120px" onclick="addNewArt()">+ Add Art</button>
 <div class="adminFab" onclick="openAdmin()">⚙️</div>
-
-<div class="modal" id="adminModal"><div class="modalBox"><div class="modalHead"><b>প্ৰশাসক লগইন</b><span onclick="closeModal('adminModal')" style="cursor:pointer">✕</span></div><div class="modalBody"><input type="password" id="adminPassInput" placeholder="পাছৱৰ্ড দিয়ক"><button onclick="doAdminLogin()" style="background:#ff9f00">এডমিন হিচাপে লগইন কৰক</button><button style="background:#eee;color:#333" onclick="closeModal('adminModal')">বাতিল কৰক</button></div></div></div>
-
-<div class="modal" id="loginModal"><div class="modalBox"><div class="modalHead"><b>Customer Login</b><span onclick="closeModal('loginModal')" style="cursor:pointer">✕</span></div><div class="modalBody"><input type="email" id="googleEmail" placeholder="Gmail ID"><button onclick="loginWithGoogle()" style="background:#2874f0">Gmail Login</button><input type="tel" id="phoneNum" placeholder="Phone - 9101573700"><button onclick="verifyOTP()" style="background:#25D366">Phone Login</button></div></div></div>
-
-<div class="modal" id="cartModal"><div class="modalBox"><div class="modalHead"><b>🛒 My Cart</b><span onclick="closeModal('cartModal')" style="cursor:pointer">✕</span></div><div class="modalBody" id="cartBody"></div></div></div>
-<div class="modal" id="buyModal"><div class="modalBox"><div class="modalHead"><b>Buy Now</b><span onclick="closeModal('buyModal')" style="cursor:pointer">✕</span></div><div class="modalBody" id="buyBody"></div></div></div>
-
+<div class="modal" id="adminModal"><div class="modalBox"><div class="modalHead"><b>প্ৰশাসক লগইন</b><span onclick="closeModal('adminModal')">✕</span></div><div class="modalBody"><input type="password" id="adminPassInput" placeholder="পাছৱৰ্ড দিয়ক"><button onclick="doAdminLogin()" style="background:#ff9f00">এডমিন হিচাপে লগইন কৰক</button><button style="background:#eee;color:#333" onclick="closeModal('adminModal')">বাতিল কৰক</button></div></div></div>
+<div class="modal" id="loginModal"><div class="modalBox"><div class="modalHead"><b>Login</b><span onclick="closeModal('loginModal')">✕</span></div><div class="modalBody"><input id="googleEmail" placeholder="Gmail"><button onclick="loginWithGoogle()" style="background:#2874f0">Gmail Login</button><input id="phoneNum" placeholder="Phone 9101573700"><button onclick="verifyOTP()" style="background:#25D366">Phone Login</button></div></div></div>
+<div class="modal" id="cartModal"><div class="modalBox"><div class="modalHead"><b>Cart</b><span onclick="closeModal('cartModal')">✕</span></div><div class="modalBody" id="cartBody"></div></div></div>
+<div class="modal" id="buyModal"><div class="modalBox"><div class="modalHead"><b>Buy Now</b><span onclick="closeModal('buyModal')">✕</span></div><div class="modalBody" id="buyBody"></div></div></div>
 <script>
-const WA = "919101573700";
-let products=[
-{name:"বিমূৰ্ত অৱতীৰ্ণ হয়",price:3200,old:4100,cat:"Modern",img:"https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500"},
-{name:"ক'ভিড-১৯ত",price:2800,old:3600,cat:"Modern",img:"https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500"},
-{name:"ফুলৰ ফুলৰ থোপা",price:2100,old:2700,cat:"Traditional",img:"https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?w=500"},
-{name:"হিল ভিউ",price:1900,old:2400,cat:"Village",img:"https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?w=500"}
-];
-let slidesData=[
-"https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800",
-"https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800",
-"https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?w=800"
-];
+const WA="919101573700";
+let products=[{name:"বিমূৰ্ত অৱতীৰ্ণ হয়",price:3200,old:4100,cat:"Modern",img:"https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500"},{name:"ক'ভিড-১৯ত",price:2800,old:3600,cat:"Modern",img:"https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500"},{name:"ফুলৰ থোপা",price:2100,old:2700,cat:"Traditional",img:"https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?w=500"},{name:"হিল ভিউ",price:1900,old:2400,cat:"Village",img:"https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?w=500"}];
+let slidesData=["https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800","https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800","https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?w=800"];
 let cart=[],isAdmin=false,currentUser=null,slideIdx=0;
 function showToast(m){let t=document.getElementById("toast");t.innerText=m;t.style.display="block";setTimeout(()=>t.style.display="none",2500);}
-function renderSlides(){
-let h="",d="";
-slidesData.forEach((s,i)=>{
-h+=`<div class="slide"><img src="${s}"><div class="slideAdmin"><button class="editS" onclick="editSlide(${i})">Edit</button><button class="delS" onclick="delSlide(${i})">Delete</button></div></div>`;
-d+=`<span class="${i==slideIdx?'active':''}" onclick="goSlide(${i})"></span>`;
-});
-document.getElementById("slides").innerHTML=h;
-document.getElementById("dots").innerHTML=d;
-updSlide();
-}
-function render(list=products){
-let h="";
-list.forEach((p)=>{
-let idx=products.indexOf(p);
-h+=`<div class="card"><span class="badge">22% OFF</span><img src="${p.img}"><div class="info"><div class="title">${p.name}</div><div class="price">₹${p.price} <span class="old">₹${p.old}</span></div><div class="actions"><button class="addCart" onclick="addCart(${idx})">ততত লাগিল</button><button class="buyNow" onclick="buyNow(${idx})">ইংৰাজী</button><button class="editBtn" onclick="editPro(${idx})">EDIT</button><button class="delBtn" onclick="delPro(${idx})">DELETE</button></div></div></div>`;
-});
-document.getElementById("productGrid").innerHTML=h;
-document.getElementById("itemCount").innerText=list.length+" Items";
-}
+function renderSlides(){let h="",d="";slidesData.forEach((s,i)=>{h+=`<div class="slide"><img src="${s}"><div class="slideAdmin"><button class="editS" onclick="editSlide(${i})">Edit</button><button class="delS" onclick="delSlide(${i})">Delete</button></div></div>`;d+=`<span class="${i==slideIdx?'active':''}" onclick="goSlide(${i})"></span>`;});document.getElementById("slides").innerHTML=h;document.getElementById("dots").innerHTML=d;updSlide();}
+function render(list=products){let h="";list.forEach(p=>{let idx=products.indexOf(p);h+=`<div class="card"><span class="badge">22% OFF</span><img src="${p.img}"><div class="info"><div class="title">${p.name}</div><div class="price">₹${p.price} <span class="old">₹${p.old}</span></div><div class="actions"><button class="addCart" onclick="addCart(${idx})">কাৰ্টত যোগ</button><button class="buyNow" onclick="buyNow(${idx})">কিনক</button><button class="editBtn" onclick="editPro(${idx})">EDIT</button><button class="delBtn" onclick="delPro(${idx})">DELETE</button></div></div></div>`;});document.getElementById("productGrid").innerHTML=h;document.getElementById("itemCount").innerText=list.length+" Items";}
 function openSide(){document.getElementById("sideMenu").classList.add("open");document.getElementById("overlay").classList.add("show")}
 function closeSide(){document.getElementById("sideMenu").classList.remove("open");document.getElementById("overlay").classList.remove("show")}
 function openAdmin(){document.getElementById("adminModal").classList.add("show")}
@@ -169,32 +105,23 @@ function openLogin(){document.getElementById("loginModal").classList.add("show")
 function closeModal(id){document.getElementById(id).classList.remove("show")}
 function filterCat(c,el){if(el){document.querySelectorAll(".cats button").forEach(b=>b.classList.remove("active"));el.classList.add("active")}if(c=="all")render(products);else render(products.filter(x=>x.cat==c));}
 function searchArt(){let q=document.getElementById("searchInput").value.toLowerCase();render(products.filter(p=>p.name.toLowerCase().includes(q)))}
-function doAdminLogin(){
-let pw=document.getElementById("adminPassInput").value;
-if(pw==="venus123"){
-isAdmin=true;currentUser="Admin";
-document.body.classList.add("adminMode");
-updateUI();closeModal("adminModal");
-showToast("Admin Mode ON");
-renderSlides();render();
-}else{alert("ভুল পাছৱৰ্ড!");}
-}
-function loginWithGoogle(){let e=document.getElementById("googleEmail").value;if(!e.includes("@")){alert("Valid Gmail");return}currentUser=e;updateUI();closeModal("loginModal");showToast("Welcome");}
-function verifyOTP(){let ph=document.getElementById("phoneNum").value;if(ph.length<10){alert("10-digit");return}currentUser="Phone: "+ph;updateUI();closeModal("loginModal");showToast("Login OK");}
-function updateUI(){let l=!!currentUser;document.getElementById("loginMainBtn").style.display=l?"none":"inline-block";document.getElementById("logoutMainBtn").style.display=l?"inline-block":"none";document.getElementById("userLabel").style.display=l?"block":"none";document.getElementById("userLabel").innerText=currentUser||"";document.getElementById("sideUser").innerText=l?"Hello, "+currentUser:"Hello, Guest";}
-function logoutAll(){isAdmin=false;currentUser=null;document.body.classList.remove("adminMode");updateUI();renderSlides();render();showToast("Logout");}
-function addCart(i){cart.push(products[i]);document.getElementById("cartCount").innerText=cart.length;document.getElementById("sideCart").innerText=cart.length;showToast(products[i].name+" Cart ত!");}
-function openCart(){let b=document.getElementById("cartBody");if(cart.length==0){b.innerHTML="<p>Cart খালী</p>"}else{let t=0,h="";cart.forEach((c,idx)=>{t+=parseInt(c.price);h+=`<div class="cartItem"><img src="${c.img}"><div style="flex:1"><b>${c.name}</b><br>₹${c.price}</div><button onclick="removeCart(${idx})" style="background:#ff6161;border:0;color:#fff;padding:5px 8px;border-radius:3px">✕</button></div>`;});h+=`<div style="font-weight:700;border-top:2px solid #333;padding:10px 0">Total: ₹${t}</div><button onclick="orderWA()" style="background:#25D366">📱 WhatsApp Order - 9101573700</button>`;b.innerHTML=h;}document.getElementById("cartModal").classList.add("show");}
+function doAdminLogin(){let pw=document.getElementById("adminPassInput").value;if(pw==="venus123"){isAdmin=true;currentUser="Admin";document.body.classList.add("adminMode");updateUI();closeModal("adminModal");showToast("Admin ON - Edit Active");renderSlides();render();}else alert("ভুল পাছৱৰ্ড");}
+function loginWithGoogle(){let e=document.getElementById("googleEmail").value;if(!e.includes("@")){alert("Gmail");return}currentUser=e;updateUI();closeModal("loginModal");}
+function verifyOTP(){let ph=document.getElementById("phoneNum").value;if(ph.length<10){alert("Phone");return}currentUser=ph;updateUI();closeModal("loginModal");}
+function updateUI(){let l=!!currentUser;document.getElementById("loginMainBtn").style.display=l?"none":"inline-block";document.getElementById("logoutMainBtn").style.display=l?"inline-block":"none";document.getElementById("userLabel").style.display=l?"block":"none";document.getElementById("userLabel").innerText=currentUser||"";document.getElementById("sideUser").innerText=l?"Hello, "+currentUser:"Guest";}
+function logoutAll(){isAdmin=false;currentUser=null;document.body.classList.remove("adminMode");updateUI();renderSlides();render();}
+function addCart(i){cart.push(products[i]);document.getElementById("cartCount").innerText=cart.length;document.getElementById("sideCart").innerText=cart.length;showToast("Cart ত যোগ!");}
+function openCart(){let b=document.getElementById("cartBody");if(cart.length==0){b.innerHTML="<p>Cart খালী</p>"}else{let t=0,h="";cart.forEach((c,idx)=>{t+=parseInt(c.price);h+=`<div class="cartItem"><img src="${c.img}"><div style="flex:1"><b>${c.name}</b><br>₹${c.price}</div><button onclick="removeCart(${idx})" style="background:#ff6161;border:0;color:#fff;padding:5px 8px">✕</button></div>`;});h+=`<div style="font-weight:700;border-top:2px solid #333;padding:10px 0">Total: ₹${t}</div><button onclick="orderWA()" style="background:#25D366">📱 WhatsApp 9101573700</button>`;b.innerHTML=h;}document.getElementById("cartModal").classList.add("show");}
 function removeCart(i){cart.splice(i,1);document.getElementById("cartCount").innerText=cart.length;document.getElementById("sideCart").innerText=cart.length;openCart();}
-function buyNow(i){let p=products[i];let b=document.getElementById("buyBody");b.innerHTML=`<div style="text-align:center"><img src="${p.img}" style="width:100%;height:150px;object-fit:cover;border-radius:6px"><h3>${p.name}</h3><p>₹${p.price}</p></div><input id="cName" placeholder="নাম"><input id="cPhone" placeholder="Phone"><input id="cAddr" placeholder="Address"><button onclick="confirmOrder(${i})" style="background:#25D366">📱 WhatsApp - 9101573700</button>`;document.getElementById("buyModal").classList.add("show");}
+function buyNow(i){let p=products[i];let b=document.getElementById("buyBody");b.innerHTML=`<div style="text-align:center"><img src="${p.img}" style="width:100%;height:150px;object-fit:cover"><h3>${p.name}</h3><p>₹${p.price}</p></div><input id="cName" placeholder="নাম"><input id="cPhone" placeholder="Phone"><input id="cAddr" placeholder="Address"><button onclick="confirmOrder(${i})" style="background:#25D366">WhatsApp 9101573700</button>`;document.getElementById("buyModal").classList.add("show");}
 function confirmOrder(i){let p=products[i];let n=document.getElementById("cName").value||"Customer";let ph=document.getElementById("cPhone").value||"";let ad=document.getElementById("cAddr").value||"Teok";let msg=`Hello VENUS ART%0A🎨 ${p.name}%0A💰 ₹${p.price}%0A👤 ${n}%0A📞 ${ph}%0A🏠 ${ad}`;window.open(`https://wa.me/${WA}?text=${msg}`,"_blank");}
 function orderWA(){let t=0;let names=cart.map(c=>{t+=parseInt(c.price);return c.name}).join(", ");let msg=`Hello VENUS ART%0A🎨 ${names}%0A💰 Total: ₹${t}`;window.open(`https://wa.me/${WA}?text=${msg}`,"_blank");}
-function editPro(i){if(!isAdmin){alert("Admin Login কৰক");return}let n=prompt("Edit Name:",products[i].name);if(n)products[i].name=n;let pr=prompt("Price:",products[i].price);if(pr)products[i].price=pr;render();}
-function delPro(i){if(!isAdmin){alert("Admin Login কৰক");return}if(confirm("Delete?")){products.splice(i,1);render();}}
-function editSlide(i){if(!isAdmin){alert("Admin Login কৰক");return}let u=prompt("নতুন Slide URL:",slidesData[i]);if(u){slidesData[i]=u;renderSlides();showToast("Slide Edited!");}}
-function delSlide(i){if(!isAdmin){alert("Admin Login কৰক");return}if(slidesData.length==1){alert("1 টা থাকিব লাগিব");return}if(confirm("Delete Slide?")){slidesData.splice(i,1);if(slideIdx>=slidesData.length)slideIdx=0;renderSlides();}}
-function addNewSlide(){if(!isAdmin){alert("Admin Login কৰক");return}let u=prompt("নতুন Slide URL:");if(u){slidesData.push(u);renderSlides();}}
-function addNewArt(){if(!isAdmin){alert("Admin Login কৰক");return}let n=prompt("Art Name:");if(!n)return;let pr=prompt("Price:","2000");let img=prompt("Image URL:");products.push({name:n,price:pr,old:Math.round(pr*1.3),cat:"Traditional",img:img||products[0].img});render();}
+function editPro(i){if(!isAdmin)return;let n=prompt("Name:",products[i].name);if(n)products[i].name=n;let pr=prompt("Price:",products[i].price);if(pr)products[i].price=pr;render();}
+function delPro(i){if(!isAdmin)return;if(confirm("Delete?")){products.splice(i,1);render();}}
+function editSlide(i){if(!isAdmin)return;let u=prompt("New URL:",slidesData[i]);if(u){slidesData[i]=u;renderSlides();}}
+function delSlide(i){if(!isAdmin)return;if(slidesData.length==1){alert("1 needed");return}if(confirm("Delete?")){slidesData.splice(i,1);if(slideIdx>=slidesData.length)slideIdx=0;renderSlides();}}
+function addNewSlide(){if(!isAdmin)return;let u=prompt("New Slide URL:");if(u){slidesData.push(u);renderSlides();}}
+function addNewArt(){if(!isAdmin)return;let n=prompt("Name:");if(!n)return;let pr=prompt("Price:","2000");let img=prompt("Image URL:");products.push({name:n,price:pr,old:Math.round(pr*1.3),cat:"Traditional",img:img||products[0].img});render();}
 function goSlide(n){slideIdx=n;updSlide()}
 function updSlide(){document.getElementById("slides").style.transform=`translateX(-${slideIdx*100}%)`;document.querySelectorAll("#dots span").forEach((d,i)=>d.classList.toggle("active",i==slideIdx))}
 setInterval(()=>{slideIdx=(slideIdx+1)%slidesData.length;updSlide()},4000);
