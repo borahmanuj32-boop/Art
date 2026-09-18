@@ -142,7 +142,15 @@ let inp=document.createElement('input');
 inp.type='file';inp.accept='image/*';
 inp.onchange=e=>{
 let r=new FileReader();
-r.onload=ev=>{
+r.onload=ev=>{products.unshift({name:n,price:pr,img:ev.target.result});
+render();
+showToast("Art Upload Done!");
+};
+r.readAsDataURL(e.target.files[0]);
+};
+inp.click();
+}
+
 products.push({name:n,price:parseInt(pr)||0,old:4100,cat:"Modern",img:ev.target.result});
 render();showToast("Art Upload হ’ল!");
 };
