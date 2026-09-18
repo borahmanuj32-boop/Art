@@ -1,55 +1,289 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VENUS ART GALLERY TEOK</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}body{background:#f1f3f6}
-.h{background:#2874f0;color:#fff;position:sticky;top:0;z-index:999;padding:8px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.l{font-weight:900}.l span{color:#ffe500}.m{font-size:22px;cursor:pointer;background:rgba(255,255,255,.2);padding:4px 8px;border-radius:3px}
-.s{flex:1;display:flex;background:#fff;border-radius:3px;overflow:hidden;max-width:400px}.s input{flex:1;border:0;padding:8px;outline:0}.s button{border:0;background:#fff;padding:0 10px;color:#2874f0}
-.n{display:flex;gap:4px}.n a,.n button{background:rgba(255,255,255,.2);border:0;color:#fff;padding:5px 8px;border-radius:3px;font-weight:700;font-size:11px;cursor:pointer;text-decoration:none}
-.sm{position:fixed;top:0;left:-280px;width:280px;height:100%;background:#fff;z-index:3000;transition:.3s;box-shadow:2px 0 10px rgba(0,0,0,.3);overflow:auto}.sm.o{left:0}.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2999;display:none}.ov.o{display:block}
-.sh{background:#2874f0;color:#fff;padding:12px;display:flex;justify-content:space-between}.sl a{display:block;padding:10px 12px;border-bottom:1px solid #eee;text-decoration:none;color:#333;font-size:13px;font-weight:600}
-.slw{position:relative;overflow:hidden;height:180px;margin:6px;background:#fff;border-radius:4px}.slw.sw{display:flex;transition:.5s;height:100%}.sw.sd{min-width:100%;position:relative}.sd img{width:100%;height:100%;object-fit:cover}.st{position:absolute;left:5%;top:20%;background:rgba(0,0,0,.6);color:#fff;padding:8px;border-radius:4px}
-.cat{background:#fff;display:flex;gap:6px;padding:8px;overflow:auto;margin:6px;border-radius:4px}.cat button{border:1px solid #ddd;background:#fff;padding:5px 12px;border-radius:20px;font-weight:600;cursor:pointer;white-space:nowrap;font-size:12px}.cat button.on{background:#2874f0;color:#fff}
-.pd{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding:6px;background:#fff;margin:0 6px 6px}.cd{border:1px solid #eee;border-radius:4px;overflow:hidden;position:relative;background:#fff}.cd img{width:100%;height:150px;object-fit:cover}.cb{padding:6px}.cb h4{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pr{color:#388e3c;font-weight:700;font-size:13px}.mr{color:#888;text-decoration:line-through;font-size:10px;margin-left:3px}.ca{display:flex;gap:3px;margin-top:4px}.ca button{flex:1;border:0;padding:5px;font-size:9px;border-radius:3px;font-weight:700;color:#fff;cursor:pointer}.b1{background:#ff9f00}.b2{background:#fb641b}.b3{background:#2874f0}.b4{background:#ff6161}.bd{position:absolute;top:4px;left:4px;background:#388e3c;color:#fff;font-size:8px;padding:2px 4px;border-radius:2px}.wh{position:absolute;top:4px;right:4px;background:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.md{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:2000;padding:10px}.md.shw{display:flex}.bx{background:#fff;width:100%;max-width:420px;border-radius:6px;overflow:auto;max-height:90vh}.mh{background:#2874f0;color:#fff;padding:10px;display:flex;justify-content:space-between}.mb{padding:10px}.mb input,.mb select,.mb textarea{width:100%;padding:8px;margin:4px 0;border:1px solid #ddd;border-radius:3px}.mb button{width:100%;padding:9px;border:0;background:#fb641b;color:#fff;border-radius:3px;font-weight:700;margin-top:6px;cursor:pointer}.ft{background:#172337;color:#fff;padding:15px;text-align:center;margin-top:10px;font-size:12px}.ft a{color:#ffe500;text-decoration:none}.lk{position:fixed;bottom:10px;right:10px;background:#172337;color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:.7}.cn{background:#ff6161;color:#fff;border-radius:50%;padding:0 4px;font-size:9px;margin-left:2px}.hd{display:none}
-</style></head><body>
-<div class="h"><span class="m" onclick="os()">☰</span><div class="l">VENUS ART <span>GALLERY TEOK</span></div><div class="s"><input id="si" placeholder="Search Art..."><button onclick="ds()"><i class="fa fa-search"></i></button></div><div class="n"><a href="https://manuj.art.blog" target="_blank">📝Blog</a><button onclick="om('wm')"><i class="fa fa-heart"></i><span id="wc" class="cn">0</span></button><button onclick="om('cm')"><i class="fa fa-shopping-cart"></i><span id="cc" class="cn">0</span></button><button onclick="om('lm')"><i class="fa fa-user"></i> <span id="un">Login</span></button></div></div>
-<div class="ov" id="ov" onclick="cs()"></div>
-<div class="sm" id="sm"><div class="sh"><b>VENUS ART GALLERY</b><span onclick="cs()" style="cursor:pointer">✖</span></div><div class="sl"><a href="#" onclick="cs();window.scrollTo(0,0)">🏠 Home</a><a href="https://manuj.art.blog" target="_blank">📝 Blog</a><a href="#" onclick="cs();fc('all')">🎨 All Art</a><a href="#" onclick="cs();fc('Traditional')">🖼️ Traditional</a><a href="#" onclick="cs();fc('Village')">🌾 Village</a><a href="#" onclick="cs();fc('Modern')">⭐ Modern</a><a href="#" onclick="cs();om('cm')">🛒 My Cart</a><a href="#" onclick="cs();om('wm')">❤️ Wishlist</a><a href="#" onclick="cs();om('lm')">👤 Login</a><a href="https://wa.me/919101573700" target="_blank">💬 WhatsApp</a><a href="#" onclick="cs();oal()">⚙️ Admin</a></div></div>
-<div class="slw"><div class="sw" id="sw"><div class="sd"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800"><div class="st"><b>VENUS ART GALLERY TEOK</b><br><small>Original Handmade - manuj.art.blog</small></div></div><div class="sd"><img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800"><div class="st"><b>Radha Krishna Collection</b><br><small>20% OFF - VENUS20</small></div></div><div class="sd"><img src="https://images.unsplash.com/photo-1577720643272-265f09367456?w=800"><div class="st"><b>Assamese Traditional Art</b><br><small>Teok, Jorhat</small></div></div></div></div>
-<div class="cat"><button class="on" onclick="fc('all',this)">All</button><button onclick="fc('Traditional',this)">Traditional</button><button onclick="fc('Village',this)">Village</button><button onclick="fc('Modern',this)">Modern</button><button onclick="fc('Assamese',this)">Assamese</button></div>
-<div style="padding:6px 10px;background:#fff;margin:6px 6px 0;font-weight:700;font-size:13px">🔥 Best Artworks <span id="pc" style="color:#2874f0;float:right"></span></div><div class="pd" id="pd"></div>
-<div class="ft"><h3>VENUS ART GALLERY TEOK</h3><p>Teok, Jorhat | <a href="https://manuj.art.blog">manuj.art.blog</a> | WA: 9101573700</p></div>
-<div class="lk" onclick="oal()"><i class="fa fa-cog"></i></div>
-<div class="md" id="al"><div class="bx"><div class="mh"><span>Admin Login</span><span onclick="cm2('al')">✖</span></div><div class="mb"><input id="ap" type="password" placeholder="Password venus123"><button onclick="ca2()" style="background:#2874f0">Login</button><p id="ae" style="color:red;font-size:11px"></p></div></div></div>
-<div class="md" id="am"><div class="bx"><div class="mh"><span>Admin Panel</span><span onclick="cm2('am')">✖</span></div><div class="mb"><input type="hidden" id="ei"><input id="pn" placeholder="Name"><input id="pp" type="number" placeholder="Price"><input id="pm" type="number" placeholder="MRP"><select id="pc2"><option>Traditional</option><option>Village</option><option>Modern</option><option>Assamese</option></select><input id="pi" placeholder="Image URL"><input type="file" id="pf" accept="image/*"><textarea id="pd2" placeholder="Desc"></textarea><button onclick="sp()">Save</button><div id="ali"></div></div></div></div>
-<div class="md" id="cm"><div class="bx"><div class="mh"><span>Cart (<span id="cc2">0</span>)</span><span onclick="cm2('cm')">✖</span></div><div class="mb" id="cb"></div></div></div>
-<div class="md" id="wm"><div class="bx"><div class="mh"><span>Wishlist</span><span onclick="cm2('wm')">✖</span></div><div class="mb" id="wb"></div></div></div>
-<div class="md" id="lm"><div class="bx"><div class="mh"><span>Login OTP</span><span onclick="cm2('lm')">✖</span></div><div class="mb"><div id="s1"><input id="li" placeholder="Mobile/Email"><button onclick="so()" style="background:#2874f0">Send OTP</button></div><div id="s2" class="hd"><p>OTP to <span id="ot"></span></p><input id="oi" maxlength="6" placeholder="123456" style="text-align:center;font-weight:700;letter-spacing:3px"><p id="osw" style="background:#e8f5e9;padding:4px;text-align:center;font-weight:700;color:#2e7d32"></p><button onclick="vo()" style="background:#388e3c">Verify</button><button onclick="bs()" style="background:#eee;color:#333">Back</button></div><p id="ls" style="font-weight:700"></p></div></div></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>VENUS ART GALLERY TEOK - Flipkart Style</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
+body{background:#f1f3f6}
+a{text-decoration:none}
+/* Header Flipkart */
+.header{background:#2874f0;position:sticky;top:0;z-index:1000;padding:10px 8px;display:flex;align-items:center;gap:8px;color:#fff}
+.hamburger{font-size:26px;cursor:pointer;padding:0 6px}
+.logo{font-weight:900;font-size:16px;line-height:14px}
+.logo span{color:#ffe500;font-weight:400;font-size:11px;font-style:italic;display:block}
+.searchBox{flex:1;background:#fff;display:flex;border-radius:2px;overflow:hidden;max-width:600px;margin:0 6px}
+.searchBox input{flex:1;border:0;padding:10px;outline:none;font-size:14px}
+.searchBox button{border:0;background:#fff;padding:0 12px;cursor:pointer}
+.navBtns{display:flex;gap:8px;align-items:center}
+.navBtns button,.navBtns a{background:transparent;border:0;color:#fff;font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:4px}
+.loginBtn{background:#fff!important;color:#2874f0!important;padding:5px 20px;border-radius:2px}
+.logoutBtn{background:#ff6161!important;color:#fff!important;padding:5px 12px;border-radius:2px;display:none}
+
+/* Side Menu - 3 lines */
+.sideMenu{position:fixed;top:0;left:-300px;width:280px;height:100%;background:#fff;z-index:2000;transition:0.3s;box-shadow:2px 0 12px rgba(0,0,0,.3);overflow:auto}
+.sideMenu.open{left:0}
+.sideHead{background:#2874f0;color:#fff;padding:14px;display:flex;justify-content:space-between;align-items:center}
+.sideUser{background:#2874f0;color:#fff;padding:10px 14px;display:flex;gap:10px;align-items:center}
+.sideList a{display:block;padding:14px;border-bottom:1px solid #eee;color:#333;font-size:14px}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1500;display:none}
+.overlay.show{display:block}
+
+/* Slideshow */
+.slider{margin:8px;background:#fff;border-radius:2px;overflow:hidden;position:relative;height:190px}
+.slides{display:flex;transition:transform 0.5s;height:100%}
+.slide{min-width:100%;height:100%;position:relative}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slideText{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.6);color:#fff;padding:6px 12px;border-radius:4px;font-size:13px}
+.dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:6px}
+.dots span{width:8px;height:8px;background:#ccc;border-radius:50%;cursor:pointer}
+.dots span.active{background:#2874f0}
+
+/* Categories */
+.cats{background:#fff;display:flex;gap:8px;padding:10px;overflow:auto;margin:8px 8px 0 8px}
+.cats button{border:1px solid #e0e0e0;padding:6px 16px;border-radius:20px;background:#fff;white-space:nowrap;cursor:pointer;font-weight:600;font-size:13px}
+.cats button.active{background:#2874f0;color:#fff;border-color:#2874f0}
+
+/* Product Section */
+.sectionHead{background:#fff;margin:8px 8px 0 8px;padding:12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f0f0f0;font-weight:700}
+.productGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px;background:#fff;margin:0 8px 8px 8px}
+.card{border:1px solid #f0f0f0;border-radius:4px;overflow:hidden;background:#fff;position:relative}
+.card img{width:100%;height:160px;object-fit:cover}
+.badge{position:absolute;top:6px;left:6px;background:#26a541;color:#fff;font-size:10px;padding:3px 6px;border-radius:2px}
+.wish{position:absolute;top:6px;right:6px;background:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.2);cursor:pointer}
+.info{padding:8px}
+.info.title{font-size:14px;height:36px;overflow:hidden;line-height:18px}
+.price{margin-top:4px;font-weight:700;color:#000}
+.price.old{color:#878787;font-weight:400;font-size:12px;text-decoration:line-through;margin-left:6px}
+.off{color:#26a541;font-size:12px;font-weight:600}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.actions button{padding:8px 2px;border:0;border-radius:2px;font-weight:700;font-size:11px;cursor:pointer}
+.addCart{background:#ff9f00;color:#fff}
+.buyNow{background:#fb641b;color:#fff}
+.editBtn{background:#2874f0;color:#fff;display:none}
+.delBtn{background:#ff6161;color:#fff;display:none}
+body.adminMode.editBtn,body.adminMode.delBtn{display:block}
+
+/* Modals */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:3000;padding:12px}
+.modal.show{display:flex}
+.modalBox{background:#fff;width:100%;max-width:380px;border-radius:4px;overflow:hidden}
+.modalHead{background:#2874f0;color:#fff;padding:14px;display:flex;justify-content:space-between}
+.modalHead span{cursor:pointer;font-size:20px}
+.modalBody{padding:16px;display:flex;flex-direction:column;gap:12px}
+.modalBody input{padding:12px;border:1px solid #ccc;border-radius:2px;width:100%}
+.modalBody button{padding:12px;border:0;border-radius:2px;background:#fb641b;color:#fff;font-weight:700;cursor:pointer}
+.tabRow{display:flex;gap:8px}
+.tabRow button{flex:1;background:#fff;border:1px solid #2874f0;color:#2874f0}
+.tabRow button.active{background:#2874f0;color:#fff}
+.googleBtn{background:#fff!important;color:#444!important;border:1px solid #ddd!important;display:flex;justify-content:center;align-items:center;gap:8px}
+.small{font-size:11px;color:#666;text-align:center}
+.adminFab{position:fixed;bottom:20px;right:20px;width:50px;height:50px;background:#333;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:900}
+</style>
+</head>
+<body>
+
+<div class="header">
+<div class="hamburger" onclick="openSide()">☰</div>
+<div class="logo">VENUS ART<br><span>GALLERY TEOK</span></div>
+<div class="searchBox"><input id="searchInput" placeholder="Search Art, Paintings..." oninput="searchArt()"><button>🔍</button></div>
+<div class="navBtns">
+<a href="http://manuj.art.blog" target="_blank">Blog</a>
+<button id="loginMainBtn" class="loginBtn" onclick="openLogin()">Login</button>
+<button id="logoutMainBtn" class="logoutBtn" onclick="logoutAll()">Logout</button>
+<button onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
+</div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeSide()"></div>
+<div class="sideMenu" id="sideMenu">
+<div class="sideHead"><b>VENUS ART GALLERY</b><span style="cursor:pointer" onclick="closeSide()">✕</span></div>
+<div class="sideUser"><div style="background:#fff;color:#2874f0;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center">👤</div><div><div id="sideUserName">Hello, Guest</div><div style="font-size:11px;opacity:.8">Teok, Assam</div></div></div>
+<div class="sideList">
+<a href="#" onclick="filterCat('all');closeSide()">🏠 Home - All Art</a>
+<a href="#" onclick="filterCat('Traditional');closeSide()">🎨 Traditional Art</a>
+<a href="#" onclick="filterCat('Village');closeSide()">🌾 Village Art</a>
+<a href="#" onclick="filterCat('Modern');closeSide()">🖼️ Modern Art</a>
+<a href="#" onclick="filterCat('Abstract');closeSide()">✨ Abstract</a>
+<a href="http://manuj.art.blog" target="_blank">📝 Blog - manuj.art.blog</a>
+<a href="#" onclick="openLogin();closeSide()">🔐 Login - Google / OTP</a>
+<a href="#" onclick="openAdmin();closeSide()">⚙️ Admin Login</a>
+<a href="#" onclick="logoutAll();closeSide()" style="color:#ff6161">🚪 Logout</a>
+</div>
+</div>
+
+<div class="slider" id="slider">
+<div class="slides" id="slides">
+<div class="slide"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800"><div class="slideText">VENUS ART GALLERY TEOK - Traditional Assamese Art</div></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800"><div class="slideText">Village Life - Hand Painted Collection</div></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800"><div class="slideText">Modern & Abstract - 22% OFF Today</div></div>
+</div>
+<div class="dots" id="dots"><span class="active" onclick="goSlide(0)"></span><span onclick="goSlide(1)"></span><span onclick="goSlide(2)"></span></div>
+</div>
+
+<div class="cats">
+<button class="active" onclick="filterCat('all',this)">All</button>
+<button onclick="filterCat('Traditional',this)">Traditional</button>
+<button onclick="filterCat('Village',this)">Village</button>
+<button onclick="filterCat('Modern',this)">Modern</button>
+<button onclick="filterCat('Abstract',this)">Abstract</button>
+</div>
+
+<div class="sectionHead"><span>🔥 Best Artworks</span><span style="color:#2874f0;font-size:13px">6 Items</span></div>
+<div class="productGrid" id="productGrid"></div>
+
+<div class="adminFab" onclick="openAdmin()">⚙️</div>
+
+<!-- Admin Modal -->
+<div class="modal" id="adminModal">
+<div class="modalBox">
+<div class="modalHead"><b>Admin Login</b><span onclick="closeModal('adminModal')">✕</span></div>
+<div class="modalBody">
+<input type="password" id="adminPassInput" placeholder="Enter Admin Password">
+<button onclick="doAdminLogin()">Login as Admin</button>
+<p class="small">Password is hidden - secure. Default: venus123 (hidden from placeholder)</p>
+<button style="background:#eee;color:#333" onclick="closeModal('adminModal')">Cancel</button>
+</div>
+</div>
+</div>
+
+<!-- User Login Modal -->
+<div class="modal" id="loginModal">
+<div class="modalBox">
+<div class="modalHead"><b>Login - VENUS ART</b><span onclick="closeModal('loginModal')">✕</span></div>
+<div class="modalBody">
+<div class="tabRow">
+<button id="tabGoogle" class="active" onclick="switchLoginTab('google')">Google ID</button>
+<button id="tabPhone" onclick="switchLoginTab('phone')">Phone OTP</button>
+</div>
+<div id="googleLoginBox">
+<button class="googleBtn" onclick="loginWithGoogle()">🔵 Continue with Google</button>
+<input type="email" id="googleEmail" placeholder="Enter Gmail ID">
+<button onclick="loginWithGoogle()" style="background:#2874f0">Login with Gmail</button>
+</div>
+<div id="phoneLoginBox" style="display:none">
+<input type="tel" id="phoneNum" placeholder="Phone Number e.g. 91XXXXXXXXXX">
+<button onclick="sendOTP()" style="background:#ff9f00">Send OTP</button>
+<input type="text" id="otpField" placeholder="Enter 6-digit OTP" style="display:none">
+<button id="verifyOtpBtn" onclick="verifyOTP()" style="display:none;background:#26a541">Verify OTP & Login</button>
+<p class="small" id="otpInfo"></p>
+</div>
+<p class="small">By continuing, you agree to Terms. Demo OTP - any 6 digits works for testing.</p>
+</div>
+</div>
+</div>
+
 <script>
-let P=[{id:1,n:"Radha Krishna Traditional Art",p:2500,m:3200,c:"Traditional",i:"https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500"},{id:2,n:"Village Rural Life",p:1800,m:2200,c:"Village",i:"https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=500"},{id:3,n:"Abstract Modern Art",p:3000,m:3800,c:"Modern",i:"https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500"},{id:4,n:"Teok Handmade Craft",p:1500,m:1900,c:"Assamese",i:"https://images.unsplash.com/photo-1577720643272-265f09367456?w=500"},{id:5,n:"Modern Gallery Art",p:2700,m:3300,c:"Modern",i:"https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=500"},{id:6,n:"Assamese Radha Bihu Art",p:2200,m:2800,c:"Assamese",i:"https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?w=500"}];
-let C=JSON.parse(localStorage.getItem('vc')||'[]'),W=JSON.parse(localStorage.getItem('vw')||'[]'),F='all',Q='',G='',T='',AD=atob('dmVudXMxMjM='),cs1=0;
-function R(){let L=P.filter(x=>(F=='all'||x.c==F)&&x.n.toLowerCase().includes(Q.toLowerCase()));document.getElementById('pd').innerHTML=L.map(x=>`<div class="cd"><span class="bd">${Math.round((1-x.p/x.m)*100)}% OFF</span><div class="wh" onclick="tw(${x.id})"><i class="${W.includes(x.id)?'fa fa-heart':'far fa-heart'}" style="color:${W.includes(x.id)?'#ff6161':'#aaa'}"></i></div><img src="${x.i}"><div class="cb"><h4>${x.n}</h4><div><span class="pr">₹${x.p}</span><span class="mr">₹${x.m}</span></div><div class="ca"><button class="b1" onclick="ac(${x.id})">ADD CART</button><button class="b2" onclick="bn(${x.id})">BUY NOW</button></div><div class="ca"><button class="b3" onclick="ep(${x.id})">Edit</button><button class="b4" onclick="dp(${x.id})">Delete</button></div></div></div>`).join('');document.getElementById('pc').innerText=L.length+' Items';document.getElementById('cc').innerText=C.length;document.getElementById('cc2').innerText=C.length;document.getElementById('wc').innerText=W.length;let u=localStorage.getItem('vu');if(u)document.getElementById('un').innerText=u.substring(0,8);localStorage.setItem('vc',JSON.stringify(C));localStorage.setItem('vw',JSON.stringify(W));RA();}
-function fc(c,e){F=c;document.querySelectorAll('.cat button').forEach(b=>b.classList.remove('on'));if(e)e.classList.add('on');R();}
-function ds(){Q=document.getElementById('si').value;R();}document.getElementById('si').addEventListener('keyup',e=>{Q=e.target.value;R();});
-function ac(id){if(!C.includes(id)){C.push(id);R();alert('Added!');}else alert('Already');}
-function bn(id){let x=P.find(a=>a.id==id);window.open(`https://wa.me/919101573700?text=Want ${x.n} ₹${x.p}`,'_blank');}
-function tw(id){let i=W.indexOf(id);if(i>-1)W.splice(i,1);else W.push(id);R();}
-function os(){document.getElementById('sm').classList.add('o');document.getElementById('ov').classList.add('o');}
-function cs(){document.getElementById('sm').classList.remove('o');document.getElementById('ov').classList.remove('o');}
-function oal(){om('al');}function ca2(){let v=document.getElementById('ap').value;if(v==AD){cm2('al');om('am');document.getElementById('ap').value='';}else document.getElementById('ae').innerText='Wrong!';}
-function sp(){let id=document.getElementById('ei').value,n=document.getElementById('pn').value,p=parseInt(document.getElementById('pp').value),m=parseInt(document.getElementById('pm').value)||Math.round(p*1.3),c=document.getElementById('pc2').value,i=document.getElementById('pi').value;if(!n||!p||!i){alert('Name Price Image?');return;}if(id){let x=P.find(a=>a.id==id);x.n=n;x.p=p;x.m=m;x.c=c;x.i=i;}else P.push({id:Date.now(),n,p,m,c,i});document.getElementById('ei').value='';document.getElementById('pn').value='';document.getElementById('pp').value='';document.getElementById('pm').value='';document.getElementById('pi').value='';R();alert('Saved!');}
-function ep(id){let x=P.find(a=>a.id==id);document.getElementById('ei').value=x.id;document.getElementById('pn').value=x.n;document.getElementById('pp').value=x.p;document.getElementById('pm').value=x.m;document.getElementById('pc2').value=x.c;document.getElementById('pi').value=x.i;om('am');}
-function dp(id){if(confirm('Delete?')){P=P.filter(a=>a.id!=id);R();}}
-function RA(){document.getElementById('ali').innerHTML=P.map(x=>`<div style="display:flex;justify-content:space-between;border:1px solid #eee;padding:4px;margin:2px 0;font-size:11px"><span>${x.n} ₹${x.p}</span><span><button onclick="ep(${x.id})" style="background:#2874f0;color:#fff;border:0;padding:2px 4px;border-radius:2px">Edit</button> <button onclick="dp(${x.id})" style="background:#ff6161;color:#fff;border:0;padding:2px 4px;border-radius:2px">Del</button></span></div>`).join('');}
-function om(id){document.getElementById(id).classList.add('shw');if(id=='cm')RC();if(id=='wm')RW();}
-function cm2(id){document.getElementById(id).classList.remove('shw');}
-function RC(){let b=document.getElementById('cb');if(C.length==0){b.innerHTML='<p>Empty</p>';return;}let t=0;b.innerHTML=C.map(cid=>{let x=P.find(a=>a.id==cid);if(!x)return'';t+=x.p;return `<div style="display:flex;gap:6px;border-bottom:1px solid #eee;padding:6px 0"><img src="${x.i}" style="width:40px;height:40px"><div style="font-size:11px"><b>${x.n}</b><br>₹${x.p} <button onclick="rc(${x.id})" style="background:#ff6161;color:#fff;border:0;padding:1px 4px;border-radius:2px">Remove</button></div></div>`;}).join('')+`<h3>Total ₹${t}</h3><button onclick="co()">Order WhatsApp</button>`;}
-function rc(id){C=C.filter(a=>a!=id);R();RC();}
-function co(){let t=0,tx='Hello VENUS ART%0AOrder:%0A';C.forEach(cid=>{let x=P.find(a=>a.id==cid);if(x){tx+=`- ${x.n} ₹${x.p}%0A`;t+=x.p;}});tx+=`Total ₹${t}`;window.open(`https://wa.me/919101573700?text=${tx}`,'_blank');}
-function RW(){let b=document.getElementById('wb');if(W.length==0){b.innerHTML='<p>Empty</p>';return;}b.innerHTML=W.map(cid=>{let x=P.find(a=>a.id==cid);if(!x)return'';return `<div style="display:flex;gap:6px;border-bottom:1px solid #eee;padding:6px 0"><img src="${x.i}" style="width:40px;height:40px"><div style="font-size:11px"><b>${x.n}</b><br>₹${x.p} <button onclick="ac(${x.id})" style="background:#ff9f00;color:#fff;border:0;padding:1px 4px;border-radius:2px">Add Cart</button></div></div>`;}).join('');}
-function so(){let v=document.getElementById('li').value.trim();if(v.length<5){alert('Enter Mobile/Email');return;}T=v;G=Math.floor(100000+Math.random()*900000)+'';document.getElementById('ot').innerText=v;document.getElementById('osw').innerText='OTP: '+G;document.getElementById('s1').classList.add('hd');document.getElementById('s2').classList.remove('hd');setTimeout(()=>{G='';},120000);}
-function vo(){let e=document.getElementById('oi').value.trim();if(e==G&&G!=''){localStorage.setItem('vu',T);document.getElementById('ls').innerText='Success!';document.getElementById('un').innerText=T.substring(0,8);setTimeout(()=>{cm2('lm');document.getElementById('s1').classList.remove('hd');document.getElementById('s2').classList.add('hd');},800);}else document.getElementById('ls').innerText='Wrong OTP!';}
-function bs(){document.getElementById('s1').classList.remove('hd');document.getElementById('s2').classList.add('hd');}
-setInterval(()=>{cs1=(cs1+1)%3;document.getElementById('sw').style.transform=`translateX(-${cs1*100}%)`;},3000);
-document.getElementById('pf').addEventListener('change',e=>{let r=new FileReader();r.onload=()=>{document.getElementById('pi').value=r.result;};r.readAsDataURL(e.target.files[0]);});
-R();
-</script></body></html>
+let products=[
+{name:"Radha Krishna Traditional Art",price:2500,old:3200,cat:"Traditional",off:"22% OFF",img:"https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500"},
+{name:"Village Rural Life",price:1800,old:2200,cat:"Village",off:"18% OFF",img:"https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=500"},
+{name:"Abstract Color Flow",price:3200,old:4100,cat:"Abstract",off:"22% OFF",img:"https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500"},
+{name:"Modern Lady Portrait",price:2800,old:3600,cat:"Modern",off:"21% OFF",img:"https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500"},
+{name:"Flower Bouquet",price:2100,old:2700,cat:"Traditional",off:"21% OFF",img:"https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?w=500"},
+{name:"Hill View Painting",price:1900,old:2400,cat:"Village",off:"20% OFF",img:"https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?w=500"}
+];
+let cart=[],currentUser=null,isAdmin=false,generatedOTP="",slideIndex=0;
+
+function render(list=products){
+let html="";list.forEach((p,i)=>{
+html+=`<div class="card">
+<span class="badge">${p.off}</span>
+<span class="wish" onclick="addWishlist(${i})">♡</span>
+<img src="${p.img}" onclick="viewProduct(${i})">
+<div class="info">
+<div class="title">${p.name}</div>
+<div class="price">₹${p.price} <span class="old">₹${p.old}</span> <span class="off">${p.off}</span></div>
+<div class="actions">
+<button class="addCart" onclick="addToCart(${i})">ADD TO CART</button>
+<button class="buyNow" onclick="buyNow(${i})">BUY NOW</button>
+<button class="editBtn" onclick="editProduct(${i})">EDIT</button>
+<button class="delBtn" onclick="deleteProduct(${i})">DELETE</button>
+</div>
+</div>
+</div>`;});
+document.getElementById("productGrid").innerHTML=html;
+}
+function openSide(){document.getElementById("sideMenu").classList.add("open");document.getElementById("overlay").classList.add("show")}
+function closeSide(){document.getElementById("sideMenu").classList.remove("open");document.getElementById("overlay").classList.remove("show")}
+function openAdmin(){document.getElementById("adminModal").classList.add("show")}
+function openLogin(){document.getElementById("loginModal").classList.add("show")}
+function closeModal(id){document.getElementById(id).classList.remove("show")}
+function filterCat(cat,el){
+if(el){document.querySelectorAll(".cats button").forEach(b=>b.classList.remove("active"));el.classList.add("active");}
+if(cat=="all")render(products);else render(products.filter(p=>p.cat==cat));
+}
+function searchArt(){let q=document.getElementById("searchInput").value.toLowerCase();render(products.filter(p=>p.name.toLowerCase().includes(q)));}
+function doAdminLogin(){
+let pass=document.getElementById("adminPassInput").value;
+if(pass==="venus123"){
+isAdmin=true;document.body.classList.add("adminMode");
+currentUser="Admin";updateLoginUI();
+closeModal("adminModal");
+alert("Admin Login Success! Now you can EDIT / DELETE photos");
+}else alert("Wrong Admin Password!");
+}
+function switchLoginTab(type){
+document.getElementById("googleLoginBox").style.display=type=="google"?"block":"none";
+document.getElementById("phoneLoginBox").style.display=type=="phone"?"block":"none";
+document.getElementById("tabGoogle").classList.toggle("active",type=="google");
+document.getElementById("tabPhone").classList.toggle("active",type=="phone");
+}
+function loginWithGoogle(){
+let email=document.getElementById("googleEmail").value;
+if(!email.includes("@")){alert("Enter valid Gmail ID");return;}
+currentUser=email;updateLoginUI();closeModal("loginModal");alert("Logged in with Google: "+email);
+}
+function sendOTP(){
+let phone=document.getElementById("phoneNum").value;
+if(phone.length<10){alert("Enter valid Phone Number");return;}
+generatedOTP=Math.floor(100000+Math.random()*900000).toString();
+document.getElementById("otpField").style.display="block";
+document.getElementById("verifyOtpBtn").style.display="block";
+document.getElementById("otpInfo").innerText="Demo OTP: "+generatedOTP+" (Real app will send SMS)";
+alert("OTP sent! Demo OTP is: "+generatedOTP);
+}
+function verifyOTP(){
+let otp=document.getElementById("otpField").value;
+if(otp.length!=6){alert("Enter 6-digit OTP");return;}
+currentUser=document.getElementById("phoneNum").value;
+updateLoginUI();closeModal("loginModal");alert("Phone OTP Verified! Logged in: "+currentUser);
+}
+function updateLoginUI(){
+if(currentUser){
+document.getElementById("loginMainBtn").style.display="none";
+document.getElementById("logoutMainBtn").style.display="inline-block";
+document.getElementById("sideUserName").innerText="Hello, "+(isAdmin?"Admin":currentUser);
+}
+}
+function logoutAll(){
+currentUser=null;isAdmin=false;document.body.classList.remove("adminMode");
+document.getElementById("loginMainBtn").style.display="inline-block";
+document.getElementById("logoutMainBtn").style.display="none";
+document.getElementById("sideUserName").innerText="Hello, Guest";
+alert("Logged Out Successfully!");
+}
+function addToCart(i){cart.push(products[i]);document.getElementById("cartCount").innerText=cart.length;alert("Added to Cart: "+products[i].name);}
+function buyNow(i){alert("Buy Now: "+products[i].name+" - Contact Venus Art Gallery Teok");}
+function addWishlist(i){alert("Added to Wishlist");}
+function openCart(){alert("Cart Items: "+cart.length+"\n"+cart.map(c=>c.name).join("\n"));}
+function viewProduct(i){alert(products[i].name+"\n₹"+products[i].price);}
+function editProduct(i){
+if(!isAdmin){alert("Only Admin can Edit! Please Admin Login");return;}
+let newName=prompt("Edit Photo Name:",products[i].name);
+if(newName){products[i].name=newName;render();}
+}
+function deleteProduct(i){
+if(!isAdmin){alert("Only Admin can Delete! Please Admin Login");return;}
+if(confirm("Delete this photo?")){products.splice(i,1);render();}
+}
+function goSlide(n){slideIndex=n;updateSlider();}
+function updateSlider(){
+document.getElementById("slides").style.transform=`translateX(-${slideIndex*100}%)`;
+document.querySelectorAll("#dots span").forEach((d,i)=>d.classList.toggle("active",i==slideIndex));
+}
+setInterval(()=>{slideIndex=(slideIndex+1)%3;updateSlider();},3000);
+render();
+</script>
+</body>
+</html>
