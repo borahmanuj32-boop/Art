@@ -42,7 +42,7 @@ body.adminMode .slideAdmin{display:flex}
 .cats button{border:1px solid #ddd;padding:6px 16px;border-radius:20px;background:#fff;white-space:nowrap;cursor:pointer;font-weight:600}
 .cats button.active{background:#2874f0;color:#fff;border-color:#2874f0}
 .sectionHead{background:#fff;margin:8px 8px 0 8px;padding:12px;display:flex;justify-content:space-between;font-weight:700;border-bottom:1px solid #eee}
-.productGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px;background:#fff;margin:0 8px 8px 8px}
+.productGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px;background:#fff;margin:0 8px 0 8px}
 .card{border:1px solid #f0f0f0;border-radius:4px;overflow:hidden;background:#fff;position:relative}
 .card img{width:100%;height:150px;object-fit:cover}
 .badge{position:absolute;top:6px;left:6px;background:#26a541;color:#fff;font-size:10px;padding:3px 6px;border-radius:2px}
@@ -74,12 +74,12 @@ body.adminMode .delBtn{display:block}
 .adminFab{position:fixed;bottom:20px;right:20px;width:50px;height:50px;background:#212121;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:900;box-shadow:0 2px 10px rgba(0,0,0,.3)}
 .addBtn{position:fixed;bottom:80px;right:20px;background:#26a541;color:#fff;border:0;border-radius:20px;padding:8px 14px;font-weight:700;cursor:pointer;display:none;z-index:900}
 body.adminMode .addBtn{display:block}
-/* FOOTER NEW */
-.footer{background:#172337;color:#fff;padding:20px 14px;margin-top:10px;text-align:center}
-.footer h3{color:#ffe500;margin-bottom:8px;letter-spacing:1px}
-.footer p{font-size:13px;line-height:22px;color:#ccc}
-.footer a{color:#fff;text-decoration:none;font-weight:700}
-.footer .copy{margin-top:12px;border-top:1px solid #2a3a54;padding-top:10px;font-size:12px;color:#8a93a5}
+/* FOOTER FIX - NOW ALWAYS VISIBLE */
+.footer{background:#000;color:#fff;padding:30px 15px;margin-top:15px;text-align:center;display:block!important}
+.footer h2{color:#ffe500;font-size:18px;margin-bottom:10px}
+.footer p{font-size:15px;line-height:28px;color:#fff}
+.footer a{color:#4da6ff;text-decoration:none;font-weight:700}
+.footer .copy{margin-top:15px;border-top:1px solid #333;padding-top:15px;font-size:13px;color:#aaa}
 </style>
 </head>
 <body>
@@ -110,7 +110,7 @@ body.adminMode .addBtn{display:block}
 <div class="sideLink" onclick="openLogin();closeSide()">👤 Customer Login - Google / Phone OTP</div>
 <div class="sideLink" onclick="openAdmin();closeSide()">⚙️ Admin Login - Edit/Delete Control</div>
 <div class="sideLink" onclick="alert('Cart: '+cart.length+' items');closeSide()">🛒 My Cart - <span id="sideCart">0</span> Items</div>
-<div class="sideLink" style="color:#ff6161;font-weight:700" onclick="logoutAll();closeSide()">🚪 Logout - Clear Login</div>
+<div class="sideLink" style="color:#ff6161;font-weight:700" onclick="logoutAll();closeSide()">🚪 Logout</div>
 </div>
 </div>
 
@@ -129,13 +129,13 @@ body.adminMode .addBtn{display:block}
 <div class="sectionHead"><span>Best Artworks</span><span id="itemCount">0 Items</span></div>
 <div class="productGrid" id="productGrid"></div>
 
-<!-- FOOTER -->
+<!-- FOOTER - FINAL FIX -->
 <div class="footer">
-<h3>VENUS ART GALLERY TEOK</h3>
+<h2>VENUS ART GALLERY TEOK</h2>
 <p>Design - Manuj venus</p>
 <p>Phone - <a href="tel:9101573700">9101573700</a></p>
-<p>Blog - <a href="http://manuj.art.blog" target="_blank">manuj.art.blog</a></p>
-<div class="copy">Copyright © 2026 VENUS ART GALLERY TEOK - All Rights Reserved</div>
+<p>Blog - manuj.art.blog</p>
+<div class="copy">Copyright © 2026 VENUS ART GALLERY TEOK<br>All Rights Reserved</div>
 </div>
 
 <button class="addBtn" onclick="addNewArt()">+ Add Art</button>
@@ -147,7 +147,7 @@ body.adminMode .addBtn{display:block}
 <div class="modalBody">
 <input type="password" id="adminPassInput" placeholder="Enter Admin Password">
 <button onclick="doAdminLogin()" style="background:#ff9f00">Login as Admin</button>
-<p class="small">Password hidden & secure</p>
+<p class="small">Password: venus123</p>
 <button style="background:#eee;color:#333" onclick="closeModal('adminModal')">Cancel</button>
 </div>
 </div>
@@ -179,12 +179,10 @@ body.adminMode .addBtn{display:block}
 
 <script>
 let products=[
-{name:"Radha Krishna Traditional Art",price:2500,old:3200,cat:"Traditional",img:"https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500"},
-{name:"Village Rural Life",price:1800,old:2200,cat:"Village",img:"https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=500"},
-{name:"Abstract Color Flow",price:3200,old:4100,cat:"Modern",img:"https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500"},
-{name:"Modern Lady Portrait",price:2800,old:3600,cat:"Modern",img:"https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500"},
-{name:"Flower Bouquet",price:2100,old:2700,cat:"Traditional",img:"https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?w=500"},
-{name:"Hill View Painting",price:1900,old:2400,cat:"Village",img:"https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?w=500"}
+{name:"বিমূৰ্ত ৰঙৰ প্ৰবাহ",price:3200,old:4100,cat:"Modern",img:"https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500"},
+{name:"আধুনিক লেডী প'ট্ৰেইট",price:2800,old:3600,cat:"Modern",img:"https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500"},
+{name:"ফুলৰ ফুলৰ থোপা",price:2100,old:2700,cat:"Traditional",img:"https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?w=500"},
+{name:"হিল ভিউ পেইন্টিং",price:1900,old:2400,cat:"Village",img:"https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?w=500"}
 ];
 let slidesData=[
 "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
@@ -192,7 +190,6 @@ let slidesData=[
 "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800"
 ];
 let cart=[],isAdmin=false,currentUser=null,slideIdx=0,genOTP="";
-
 function renderSlides(){
 let h="",d="";
 slidesData.forEach((s,i)=>{
@@ -206,7 +203,7 @@ updSlide();
 function render(list=products){
 let h="";list.forEach((p,i)=>{
 let realIdx=products.indexOf(p);
-h+=`<div class="card"><span class="badge">22% OFF</span><img src="${p.img}"><div class="info"><div class="title">${p.name}</div><div class="price">₹${p.price} <span class="old">₹${p.old}</span></div><div class="actions"><button class="addCart" onclick="addCart(${realIdx})">ADD TO CART</button><button class="buyNow" onclick="buyNow(${realIdx})">BUY NOW</button><button class="editBtn" onclick="editPro(${realIdx})">EDIT</button><button class="delBtn" onclick="delPro(${realIdx})">DELETE</button></div></div></div>`;
+h+=`<div class="card"><span class="badge">২২% OFF</span><img src="${p.img}"><div class="info"><div class="title">${p.name}</div><div class="price">₹${p.price} <span class="old">₹${p.old}</span></div><div class="actions"><button class="addCart" onclick="addCart(${realIdx})">কাৰ্টত যোগ কৰক</button><button class="buyNow" onclick="buyNow(${realIdx})">এতিয়াই কিনি লওক</button><button class="editBtn" onclick="editPro(${realIdx})">EDIT</button><button class="delBtn" onclick="delPro(${realIdx})">DELETE</button></div></div></div>`;
 });
 document.getElementById("productGrid").innerHTML=h;
 document.getElementById("itemCount").innerText=list.length+" Items";
@@ -216,68 +213,15 @@ function closeSide(){document.getElementById("sideMenu").classList.remove("open"
 function openAdmin(){document.getElementById("adminModal").classList.add("show")}
 function openLogin(){document.getElementById("loginModal").classList.add("show")}
 function closeModal(id){document.getElementById(id).classList.remove("show")}
-function filterCat(c,el){
-if(el){document.querySelectorAll(".cats button").forEach(b=>b.classList.remove("active"));el.classList.add("active")}
-if(c=="all")render(products);else render(products.filter(x=>x.cat==c));
-}
+function filterCat(c,el){if(el){document.querySelectorAll(".cats button").forEach(b=>b.classList.remove("active"));el.classList.add("active")}if(c=="all")render(products);else render(products.filter(x=>x.cat==c));}
 function searchArt(){let q=document.getElementById("searchInput").value.toLowerCase();render(products.filter(p=>p.name.toLowerCase().includes(q)))}
-function doAdminLogin(){
-let pw=document.getElementById("adminPassInput").value;
-if(pw==="venus123"){
-isAdmin=true;currentUser="Admin (borahmanuj32@gmail.com)";
-document.body.classList.add("adminMode");
-updateUI();
-closeModal("adminModal");
-alert("Admin Login Success! Gallery + Slide EDIT/DELETE On");
-renderSlides();render();
-}else alert("Wrong Password! Use venus123");
-}
-function switchTab(t){
-document.getElementById("googleBox").style.display=t=="google"?"block":"none";
-document.getElementById("phoneBox").style.display=t=="phone"?"block":"none";
-document.getElementById("tabGoogle").classList.toggle("active",t=="google");
-document.getElementById("tabPhone").classList.toggle("active",t=="phone");
-}
-function loginWithGoogle(){
-let e=document.getElementById("googleEmail").value;
-if(e.length<5||!e.includes("@")){alert("Enter valid Gmail");return}
-currentUser=e;updateUI();closeModal("loginModal");alert("Customer Login: "+e);
-}
-function sendOTP(){
-let ph=document.getElementById("phoneNum").value;
-if(ph.length<10){alert("Enter 10-digit Phone");return}
-genOTP=Math.floor(100000+Math.random()*900000).toString();
-document.getElementById("otpField").style.display="block";
-document.getElementById("verifyBtn").style.display="block";
-document.getElementById("otpInfo").innerText="Demo OTP: "+genOTP;
-document.getElementById("sendOtpBtn").innerText="OTP Sent - Resend?";
-alert("Demo OTP: "+genOTP);
-}
-function verifyOTP(){
-let otp=document.getElementById("otpField").value;
-if(otp.length!=6){alert("Enter 6-digit OTP");return}
-currentUser="Phone: "+document.getElementById("phoneNum").value;
-updateUI();closeModal("loginModal");alert("Phone Login Success!");
-}
-function updateUI(){
-let logged=!!currentUser;
-document.getElementById("loginMainBtn").style.display=logged?"none":"inline-block";
-document.getElementById("logoutMainBtn").style.display=logged?"inline-block":"none";
-document.getElementById("userLabel").style.display=logged?"block":"none";
-document.getElementById("userLabel").innerText=currentUser||"";
-document.getElementById("sideUser").innerText=logged?"Hello, "+currentUser:"Hello, Guest - Please Login";
-}
-function logoutAll(){
-isAdmin=false;currentUser=null;
-document.body.classList.remove("adminMode");
-document.getElementById("adminPassInput").value="";
-document.getElementById("otpField").value="";
-document.getElementById("otpField").style.display="none";
-document.getElementById("verifyBtn").style.display="none";
-document.getElementById("sendOtpBtn").innerText="Send OTP";
-updateUI();renderSlides();render();
-alert("Logout Done! Page cleared");
-}
+function doAdminLogin(){let pw=document.getElementById("adminPassInput").value;if(pw==="venus123"){isAdmin=true;currentUser="Admin";document.body.classList.add("adminMode");updateUI();closeModal("adminModal");alert("Admin Login Success! EDIT/DELETE On");renderSlides();render();}else alert("Wrong Password! venus123")}
+function switchTab(t){document.getElementById("googleBox").style.display=t=="google"?"block":"none";document.getElementById("phoneBox").style.display=t=="phone"?"block":"none";document.getElementById("tabGoogle").classList.toggle("active",t=="google");document.getElementById("tabPhone").classList.toggle("active",t=="phone");}
+function loginWithGoogle(){let e=document.getElementById("googleEmail").value;if(e.length<5||!e.includes("@")){alert("Enter valid Gmail");return}currentUser=e;updateUI();closeModal("loginModal");alert("Login: "+e);}
+function sendOTP(){let ph=document.getElementById("phoneNum").value;if(ph.length<10){alert("Enter 10-digit Phone");return}genOTP=Math.floor(100000+Math.random()*900000).toString();document.getElementById("otpField").style.display="block";document.getElementById("verifyBtn").style.display="block";document.getElementById("otpInfo").innerText="Demo OTP: "+genOTP;document.getElementById("sendOtpBtn").innerText="OTP Sent";alert("OTP: "+genOTP);}
+function verifyOTP(){let otp=document.getElementById("otpField").value;if(otp.length!=6){alert("Enter 6-digit OTP");return}currentUser="Phone: "+document.getElementById("phoneNum").value;updateUI();closeModal("loginModal");alert("Phone Login Success!");}
+function updateUI(){let logged=!!currentUser;document.getElementById("loginMainBtn").style.display=logged?"none":"inline-block";document.getElementById("logoutMainBtn").style.display=logged?"inline-block":"none";document.getElementById("userLabel").style.display=logged?"block":"none";document.getElementById("userLabel").innerText=currentUser||"";document.getElementById("sideUser").innerText=logged?"Hello, "+currentUser:"Hello, Guest";}
+function logoutAll(){isAdmin=false;currentUser=null;document.body.classList.remove("adminMode");document.getElementById("adminPassInput").value="";document.getElementById("otpField").value="";document.getElementById("otpField").style.display="none";document.getElementById("verifyBtn").style.display="none";document.getElementById("sendOtpBtn").innerText="Send OTP";updateUI();renderSlides();render();alert("Logout Done");}
 function addCart(i){cart.push(products[i]);document.getElementById("cartCount").innerText=cart.length;document.getElementById("sideCart").innerText=cart.length}
 function buyNow(i){alert("Buy: "+products[i].name)}
 function editPro(i){if(!isAdmin){alert("Admin Login first!");return}let n=prompt("Edit Name:",products[i].name);if(n)products[i].name=n;let pr=prompt("Edit Price:",products[i].price);if(pr)products[i].price=pr;render()}
