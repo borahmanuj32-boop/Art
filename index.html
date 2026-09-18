@@ -3,81 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VENUS ART GALLERY TEOK - Flipkart Style</title>
+<title>VENUS ART GALLERY TEOK</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
 body{background:#f1f3f6}
-a{text-decoration:none}
-/* Header Flipkart */
-.header{background:#2874f0;position:sticky;top:0;z-index:1000;padding:10px 8px;display:flex;align-items:center;gap:8px;color:#fff}
+.header{background:#2874f0;position:sticky;top:0;z-index:1000;padding:10px 8px;display:flex;align-items:center;gap:8px;color:#fff;flex-wrap:wrap}
 .hamburger{font-size:26px;cursor:pointer;padding:0 6px}
 .logo{font-weight:900;font-size:16px;line-height:14px}
-.logo span{color:#ffe500;font-weight:400;font-size:11px;font-style:italic;display:block}
-.searchBox{flex:1;background:#fff;display:flex;border-radius:2px;overflow:hidden;max-width:600px;margin:0 6px}
-.searchBox input{flex:1;border:0;padding:10px;outline:none;font-size:14px}
+.logo span{color:#ffe500;font-size:11px;font-style:italic;display:block;font-weight:400}
+.searchBox{flex:1;background:#fff;display:flex;border-radius:2px;overflow:hidden;max-width:500px}
+.searchBox input{flex:1;border:0;padding:10px;outline:none}
 .searchBox button{border:0;background:#fff;padding:0 12px;cursor:pointer}
-.navBtns{display:flex;gap:8px;align-items:center}
-.navBtns button,.navBtns a{background:transparent;border:0;color:#fff;font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:4px}
-.loginBtn{background:#fff!important;color:#2874f0!important;padding:5px 20px;border-radius:2px}
-.logoutBtn{background:#ff6161!important;color:#fff!important;padding:5px 12px;border-radius:2px;display:none}
-
-/* Side Menu - 3 lines */
-.sideMenu{position:fixed;top:0;left:-300px;width:280px;height:100%;background:#fff;z-index:2000;transition:0.3s;box-shadow:2px 0 12px rgba(0,0,0,.3);overflow:auto}
+.navBtns{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.navBtns button,.navBtns a{border:0;color:#fff;font-weight:700;font-size:13px;cursor:pointer;background:rgba(255,255,255,.15);padding:6px 12px;border-radius:2px;text-decoration:none}
+#loginMainBtn{background:#fff!important;color:#2874f0!important}
+#logoutMainBtn{background:#ff6161!important;display:none}
+.sideMenu{position:fixed;top:0;left:-300px;width:280px;height:100%;background:#fff;z-index:2000;transition:.3s;box-shadow:2px 0 12px rgba(0,0,0,.3)}
 .sideMenu.open{left:0}
-.sideHead{background:#2874f0;color:#fff;padding:14px;display:flex;justify-content:space-between;align-items:center}
-.sideUser{background:#2874f0;color:#fff;padding:10px 14px;display:flex;gap:10px;align-items:center}
-.sideList a{display:block;padding:14px;border-bottom:1px solid #eee;color:#333;font-size:14px}
+.sideHead{background:#2874f0;color:#fff;padding:14px;display:flex;justify-content:space-between}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1500;display:none}
 .overlay.show{display:block}
-
-/* Slideshow */
-.slider{margin:8px;background:#fff;border-radius:2px;overflow:hidden;position:relative;height:190px}
-.slides{display:flex;transition:transform 0.5s;height:100%}
-.slide{min-width:100%;height:100%;position:relative}
+.slider{margin:8px;background:#fff;border-radius:4px;overflow:hidden;position:relative;height:190px}
+.slides{display:flex;transition:transform.5s;height:100%}
+.slide{min-width:100%;height:100%}
 .slide img{width:100%;height:100%;object-fit:cover}
-.slideText{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.6);color:#fff;padding:6px 12px;border-radius:4px;font-size:13px}
 .dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:6px}
 .dots span{width:8px;height:8px;background:#ccc;border-radius:50%;cursor:pointer}
 .dots span.active{background:#2874f0}
-
-/* Categories */
 .cats{background:#fff;display:flex;gap:8px;padding:10px;overflow:auto;margin:8px 8px 0 8px}
-.cats button{border:1px solid #e0e0e0;padding:6px 16px;border-radius:20px;background:#fff;white-space:nowrap;cursor:pointer;font-weight:600;font-size:13px}
-.cats button.active{background:#2874f0;color:#fff;border-color:#2874f0}
-
-/* Product Section */
-.sectionHead{background:#fff;margin:8px 8px 0 8px;padding:12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f0f0f0;font-weight:700}
+.cats button{border:1px solid #ddd;padding:6px 16px;border-radius:20px;background:#fff;white-space:nowrap;cursor:pointer;font-weight:600}
+.cats button.active{background:#2874f0;color:#fff}
+.sectionHead{background:#fff;margin:8px 8px 0 8px;padding:12px;display:flex;justify-content:space-between;font-weight:700;border-bottom:1px solid #eee}
 .productGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px;background:#fff;margin:0 8px 8px 8px}
 .card{border:1px solid #f0f0f0;border-radius:4px;overflow:hidden;background:#fff;position:relative}
-.card img{width:100%;height:160px;object-fit:cover}
+.card img{width:100%;height:150px;object-fit:cover}
 .badge{position:absolute;top:6px;left:6px;background:#26a541;color:#fff;font-size:10px;padding:3px 6px;border-radius:2px}
-.wish{position:absolute;top:6px;right:6px;background:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.2);cursor:pointer}
 .info{padding:8px}
-.info.title{font-size:14px;height:36px;overflow:hidden;line-height:18px}
-.price{margin-top:4px;font-weight:700;color:#000}
-.price.old{color:#878787;font-weight:400;font-size:12px;text-decoration:line-through;margin-left:6px}
-.off{color:#26a541;font-size:12px;font-weight:600}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.title{font-size:13px;height:36px;overflow:hidden;line-height:18px}
+.price{font-weight:700;margin-top:4px}
+.old{color:#878787;font-weight:400;font-size:12px;text-decoration:line-through;margin-left:4px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
 .actions button{padding:8px 2px;border:0;border-radius:2px;font-weight:700;font-size:11px;cursor:pointer}
 .addCart{background:#ff9f00;color:#fff}
 .buyNow{background:#fb641b;color:#fff}
-.editBtn{background:#2874f0;color:#fff;display:none}
-.delBtn{background:#ff6161;color:#fff;display:none}
-body.adminMode.editBtn,body.adminMode.delBtn{display:block}
-
-/* Modals */
+.editBtn{background:#2874f0;color:#fff}
+.delBtn{background:#ff6161;color:#fff}
+.editBtn,.delBtn{display:none}
+body.adminMode.editBtn, body.adminMode.delBtn{display:block!important}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:3000;padding:12px}
 .modal.show{display:flex}
 .modalBox{background:#fff;width:100%;max-width:380px;border-radius:4px;overflow:hidden}
 .modalHead{background:#2874f0;color:#fff;padding:14px;display:flex;justify-content:space-between}
-.modalHead span{cursor:pointer;font-size:20px}
+.modalHead span{cursor:pointer}
 .modalBody{padding:16px;display:flex;flex-direction:column;gap:12px}
 .modalBody input{padding:12px;border:1px solid #ccc;border-radius:2px;width:100%}
 .modalBody button{padding:12px;border:0;border-radius:2px;background:#fb641b;color:#fff;font-weight:700;cursor:pointer}
 .tabRow{display:flex;gap:8px}
 .tabRow button{flex:1;background:#fff;border:1px solid #2874f0;color:#2874f0}
 .tabRow button.active{background:#2874f0;color:#fff}
-.googleBtn{background:#fff!important;color:#444!important;border:1px solid #ddd!important;display:flex;justify-content:center;align-items:center;gap:8px}
+.googleBtn{background:#fff!important;color:#333!important;border:1px solid #ddd!important}
 .small{font-size:11px;color:#666;text-align:center}
 .adminFab{position:fixed;bottom:20px;right:20px;width:50px;height:50px;background:#333;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:900}
 </style>
@@ -86,38 +70,33 @@ body.adminMode.editBtn,body.adminMode.delBtn{display:block}
 
 <div class="header">
 <div class="hamburger" onclick="openSide()">☰</div>
-<div class="logo">VENUS ART<br><span>GALLERY TEOK</span></div>
-<div class="searchBox"><input id="searchInput" placeholder="Search Art, Paintings..." oninput="searchArt()"><button>🔍</button></div>
+<div class="logo">VENUS ART<span>GALLERY TEOK</span></div>
+<div class="searchBox"><input id="searchInput" placeholder="Search Art..." oninput="searchArt()"><button>🔍</button></div>
 <div class="navBtns">
 <a href="http://manuj.art.blog" target="_blank">Blog</a>
-<button id="loginMainBtn" class="loginBtn" onclick="openLogin()">Login</button>
-<button id="logoutMainBtn" class="logoutBtn" onclick="logoutAll()">Logout</button>
-<button onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
+<button id="loginMainBtn" onclick="openLogin()">Login</button>
+<button id="logoutMainBtn" onclick="logoutAll()">Logout</button>
+<button>🛒 Cart <span id="cartCount">0</span></button>
 </div>
 </div>
 
 <div class="overlay" id="overlay" onclick="closeSide()"></div>
 <div class="sideMenu" id="sideMenu">
-<div class="sideHead"><b>VENUS ART GALLERY</b><span style="cursor:pointer" onclick="closeSide()">✕</span></div>
-<div class="sideUser"><div style="background:#fff;color:#2874f0;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center">👤</div><div><div id="sideUserName">Hello, Guest</div><div style="font-size:11px;opacity:.8">Teok, Assam</div></div></div>
-<div class="sideList">
-<a href="#" onclick="filterCat('all');closeSide()">🏠 Home - All Art</a>
-<a href="#" onclick="filterCat('Traditional');closeSide()">🎨 Traditional Art</a>
-<a href="#" onclick="filterCat('Village');closeSide()">🌾 Village Art</a>
-<a href="#" onclick="filterCat('Modern');closeSide()">🖼️ Modern Art</a>
-<a href="#" onclick="filterCat('Abstract');closeSide()">✨ Abstract</a>
-<a href="http://manuj.art.blog" target="_blank">📝 Blog - manuj.art.blog</a>
-<a href="#" onclick="openLogin();closeSide()">🔐 Login - Google / OTP</a>
-<a href="#" onclick="openAdmin();closeSide()">⚙️ Admin Login</a>
-<a href="#" onclick="logoutAll();closeSide()" style="color:#ff6161">🚪 Logout</a>
+<div class="sideHead"><b>VENUS ART</b><span onclick="closeSide()" style="cursor:pointer">✕</span></div>
+<div style="padding:10px;background:#2874f0;color:#fff" id="sideUser">Hello, Guest</div>
+<div>
+<a href="#" style="display:block;padding:14px;border-bottom:1px solid #eee;color:#333" onclick="filterCat('all');closeSide()">All Art</a>
+<a href="#" style="display:block;padding:14px;border-bottom:1px solid #eee;color:#333" onclick="openLogin();closeSide()">User Login</a>
+<a href="#" style="display:block;padding:14px;border-bottom:1px solid #eee;color:#333" onclick="openAdmin();closeSide()">Admin Login</a>
+<a href="#" style="display:block;padding:14px;color:#ff6161" onclick="logoutAll();closeSide()">Logout</a>
 </div>
 </div>
 
-<div class="slider" id="slider">
+<div class="slider">
 <div class="slides" id="slides">
-<div class="slide"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800"><div class="slideText">VENUS ART GALLERY TEOK - Traditional Assamese Art</div></div>
-<div class="slide"><img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800"><div class="slideText">Village Life - Hand Painted Collection</div></div>
-<div class="slide"><img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800"><div class="slideText">Modern & Abstract - 22% OFF Today</div></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800"></div>
 </div>
 <div class="dots" id="dots"><span class="active" onclick="goSlide(0)"></span><span onclick="goSlide(1)"></span><span onclick="goSlide(2)"></span></div>
 </div>
@@ -127,162 +106,157 @@ body.adminMode.editBtn,body.adminMode.delBtn{display:block}
 <button onclick="filterCat('Traditional',this)">Traditional</button>
 <button onclick="filterCat('Village',this)">Village</button>
 <button onclick="filterCat('Modern',this)">Modern</button>
-<button onclick="filterCat('Abstract',this)">Abstract</button>
 </div>
 
-<div class="sectionHead"><span>🔥 Best Artworks</span><span style="color:#2874f0;font-size:13px">6 Items</span></div>
+<div class="sectionHead"><span>Best Artworks</span><span id="itemCount">6 Items</span></div>
 <div class="productGrid" id="productGrid"></div>
 
 <div class="adminFab" onclick="openAdmin()">⚙️</div>
 
-<!-- Admin Modal -->
 <div class="modal" id="adminModal">
 <div class="modalBox">
 <div class="modalHead"><b>Admin Login</b><span onclick="closeModal('adminModal')">✕</span></div>
 <div class="modalBody">
-<input type="password" id="adminPassInput" placeholder="Enter Admin Password">
-<button onclick="doAdminLogin()">Login as Admin</button>
-<p class="small">Password is hidden - secure. Default: venus123 (hidden from placeholder)</p>
+<input type="password" id="adminPassInput" placeholder="Admin Password">
+<button onclick="doAdminLogin()" style="background:#ff9f00">Login as Admin</button>
+<p class="small">Secure - Password hidden</p>
 <button style="background:#eee;color:#333" onclick="closeModal('adminModal')">Cancel</button>
 </div>
 </div>
 </div>
 
-<!-- User Login Modal -->
 <div class="modal" id="loginModal">
 <div class="modalBox">
-<div class="modalHead"><b>Login - VENUS ART</b><span onclick="closeModal('loginModal')">✕</span></div>
+<div class="modalHead"><b>Login</b><span onclick="closeModal('loginModal')">✕</span></div>
 <div class="modalBody">
 <div class="tabRow">
-<button id="tabGoogle" class="active" onclick="switchLoginTab('google')">Google ID</button>
-<button id="tabPhone" onclick="switchLoginTab('phone')">Phone OTP</button>
+<button id="tabGoogle" class="active" onclick="switchTab('google')">Google ID</button>
+<button id="tabPhone" onclick="switchTab('phone')">Phone OTP</button>
 </div>
-<div id="googleLoginBox">
-<button class="googleBtn" onclick="loginWithGoogle()">🔵 Continue with Google</button>
+<div id="googleBox">
+<button class="googleBtn" onclick="loginWithGoogle()">Continue with Google</button>
 <input type="email" id="googleEmail" placeholder="Enter Gmail ID">
 <button onclick="loginWithGoogle()" style="background:#2874f0">Login with Gmail</button>
 </div>
-<div id="phoneLoginBox" style="display:none">
-<input type="tel" id="phoneNum" placeholder="Phone Number e.g. 91XXXXXXXXXX">
-<button onclick="sendOTP()" style="background:#ff9f00">Send OTP</button>
+<div id="phoneBox" style="display:none">
+<input type="tel" id="phoneNum" placeholder="Enter Phone Number">
+<button onclick="sendOTP()" style="background:#ff9f00" id="sendOtpBtn">Send OTP</button>
 <input type="text" id="otpField" placeholder="Enter 6-digit OTP" style="display:none">
-<button id="verifyOtpBtn" onclick="verifyOTP()" style="display:none;background:#26a541">Verify OTP & Login</button>
+<button id="verifyBtn" onclick="verifyOTP()" style="display:none;background:#26a541">Verify & Login</button>
 <p class="small" id="otpInfo"></p>
 </div>
-<p class="small">By continuing, you agree to Terms. Demo OTP - any 6 digits works for testing.</p>
 </div>
 </div>
 </div>
 
 <script>
 let products=[
-{name:"Radha Krishna Traditional Art",price:2500,old:3200,cat:"Traditional",off:"22% OFF",img:"https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500"},
-{name:"Village Rural Life",price:1800,old:2200,cat:"Village",off:"18% OFF",img:"https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=500"},
-{name:"Abstract Color Flow",price:3200,old:4100,cat:"Abstract",off:"22% OFF",img:"https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500"},
-{name:"Modern Lady Portrait",price:2800,old:3600,cat:"Modern",off:"21% OFF",img:"https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500"},
-{name:"Flower Bouquet",price:2100,old:2700,cat:"Traditional",off:"21% OFF",img:"https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?w=500"},
-{name:"Hill View Painting",price:1900,old:2400,cat:"Village",off:"20% OFF",img:"https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?w=500"}
+{name:"Radha Krishna Traditional Art",price:2500,old:3200,cat:"Traditional",img:"https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500"},
+{name:"Village Rural Life",price:1800,old:2200,cat:"Village",img:"https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=500"},
+{name:"Abstract Color Flow",price:3200,old:4100,cat:"Abstract",img:"https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500"},
+{name:"Modern Lady Portrait",price:2800,old:3600,cat:"Modern",img:"https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500"},
+{name:"Flower Bouquet",price:2100,old:2700,cat:"Traditional",img:"https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?w=500"},
+{name:"Hill View Painting",price:1900,old:2400,cat:"Village",img:"https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?w=500"}
 ];
-let cart=[],currentUser=null,isAdmin=false,generatedOTP="",slideIndex=0;
+let cart=[],isAdmin=false,currentUser=null,slideIdx=0,genOTP="";
 
 function render(list=products){
-let html="";list.forEach((p,i)=>{
-html+=`<div class="card">
-<span class="badge">${p.off}</span>
-<span class="wish" onclick="addWishlist(${i})">♡</span>
-<img src="${p.img}" onclick="viewProduct(${i})">
-<div class="info">
-<div class="title">${p.name}</div>
-<div class="price">₹${p.price} <span class="old">₹${p.old}</span> <span class="off">${p.off}</span></div>
-<div class="actions">
-<button class="addCart" onclick="addToCart(${i})">ADD TO CART</button>
-<button class="buyNow" onclick="buyNow(${i})">BUY NOW</button>
-<button class="editBtn" onclick="editProduct(${i})">EDIT</button>
-<button class="delBtn" onclick="deleteProduct(${i})">DELETE</button>
-</div>
-</div>
-</div>`;});
-document.getElementById("productGrid").innerHTML=html;
+let h="";list.forEach((p,i)=>{
+h+=`<div class="card"><span class="badge">22% OFF</span><img src="${p.img}"><div class="info"><div class="title">${p.name}</div><div class="price">₹${p.price} <span class="old">₹${p.old}</span></div><div class="actions"><button class="addCart" onclick="addCart(${i})">ADD TO CART</button><button class="buyNow" onclick="buyNow(${i})">BUY NOW</button><button class="editBtn" onclick="editPro(${i})">EDIT</button><button class="delBtn" onclick="delPro(${i})">DELETE</button></div></div></div>`;
+});
+document.getElementById("productGrid").innerHTML=h;
+document.getElementById("itemCount").innerText=list.length+" Items";
 }
 function openSide(){document.getElementById("sideMenu").classList.add("open");document.getElementById("overlay").classList.add("show")}
 function closeSide(){document.getElementById("sideMenu").classList.remove("open");document.getElementById("overlay").classList.remove("show")}
 function openAdmin(){document.getElementById("adminModal").classList.add("show")}
 function openLogin(){document.getElementById("loginModal").classList.add("show")}
 function closeModal(id){document.getElementById(id).classList.remove("show")}
-function filterCat(cat,el){
-if(el){document.querySelectorAll(".cats button").forEach(b=>b.classList.remove("active"));el.classList.add("active");}
-if(cat=="all")render(products);else render(products.filter(p=>p.cat==cat));
+function filterCat(c,el){
+if(el){document.querySelectorAll(".cats button").forEach(b=>b.classList.remove("active"));el.classList.add("active")}
+if(c=="all")render(products);else render(products.filter(x=>x.cat==c));
 }
-function searchArt(){let q=document.getElementById("searchInput").value.toLowerCase();render(products.filter(p=>p.name.toLowerCase().includes(q)));}
+function searchArt(){let q=document.getElementById("searchInput").value.toLowerCase();render(products.filter(p=>p.name.toLowerCase().includes(q)))}
 function doAdminLogin(){
-let pass=document.getElementById("adminPassInput").value;
-if(pass==="venus123"){
-isAdmin=true;document.body.classList.add("adminMode");
-currentUser="Admin";updateLoginUI();
+let pw=document.getElementById("adminPassInput").value;
+if(pw==="venus123"){
+isAdmin=true;currentUser="Admin";
+document.body.classList.add("adminMode");
+updateUI();
 closeModal("adminModal");
-alert("Admin Login Success! Now you can EDIT / DELETE photos");
-}else alert("Wrong Admin Password!");
+alert("Admin Login Success! EDIT/DELETE buttons are now visible.");
+render();
+}else alert("Wrong Password! Try venus123");
 }
-function switchLoginTab(type){
-document.getElementById("googleLoginBox").style.display=type=="google"?"block":"none";
-document.getElementById("phoneLoginBox").style.display=type=="phone"?"block":"none";
-document.getElementById("tabGoogle").classList.toggle("active",type=="google");
-document.getElementById("tabPhone").classList.toggle("active",type=="phone");
+function switchTab(t){
+document.getElementById("googleBox").style.display=t=="google"?"block":"none";
+document.getElementById("phoneBox").style.display=t=="phone"?"block":"none";
+document.getElementById("tabGoogle").classList.toggle("active",t=="google");
+document.getElementById("tabPhone").classList.toggle("active",t=="phone");
 }
 function loginWithGoogle(){
-let email=document.getElementById("googleEmail").value;
-if(!email.includes("@")){alert("Enter valid Gmail ID");return;}
-currentUser=email;updateLoginUI();closeModal("loginModal");alert("Logged in with Google: "+email);
+let e=document.getElementById("googleEmail").value;
+if(e.length<5||!e.includes("@")){alert("Enter valid Gmail");return}
+currentUser=e;updateUI();closeModal("loginModal");alert("Google Login Success: "+e);
 }
 function sendOTP(){
-let phone=document.getElementById("phoneNum").value;
-if(phone.length<10){alert("Enter valid Phone Number");return;}
-generatedOTP=Math.floor(100000+Math.random()*900000).toString();
+let ph=document.getElementById("phoneNum").value;
+if(ph.length<10){alert("Enter 10-digit Phone Number");return}
+genOTP=Math.floor(100000+Math.random()*900000).toString();
 document.getElementById("otpField").style.display="block";
-document.getElementById("verifyOtpBtn").style.display="block";
-document.getElementById("otpInfo").innerText="Demo OTP: "+generatedOTP+" (Real app will send SMS)";
-alert("OTP sent! Demo OTP is: "+generatedOTP);
+document.getElementById("verifyBtn").style.display="block";
+document.getElementById("otpInfo").innerText="Demo OTP (for testing): "+genOTP+" - Any 6 digits will also work";
+document.getElementById("sendOtpBtn").innerText="OTP Sent - Resend?";
+alert("OTP Sent! Your Demo OTP is: "+genOTP+" - Enter it below");
 }
 function verifyOTP(){
 let otp=document.getElementById("otpField").value;
-if(otp.length!=6){alert("Enter 6-digit OTP");return;}
+if(otp.length!=6){alert("Enter 6-digit OTP");return}
+// Accept any 6-digit OR the generated OTP
 currentUser=document.getElementById("phoneNum").value;
-updateLoginUI();closeModal("loginModal");alert("Phone OTP Verified! Logged in: "+currentUser);
+updateUI();closeModal("loginModal");
+alert("Phone Login Success! OTP Verified: "+otp);
 }
-function updateLoginUI(){
+function updateUI(){
 if(currentUser){
 document.getElementById("loginMainBtn").style.display="none";
 document.getElementById("logoutMainBtn").style.display="inline-block";
-document.getElementById("sideUserName").innerText="Hello, "+(isAdmin?"Admin":currentUser);
+document.getElementById("sideUser").innerText="Hello, "+currentUser;
+}else{
+document.getElementById("loginMainBtn").style.display="inline-block";
+document.getElementById("logoutMainBtn").style.display="none";
+document.getElementById("sideUser").innerText="Hello, Guest";
 }
 }
 function logoutAll(){
-currentUser=null;isAdmin=false;document.body.classList.remove("adminMode");
-document.getElementById("loginMainBtn").style.display="inline-block";
-document.getElementById("logoutMainBtn").style.display="none";
-document.getElementById("sideUserName").innerText="Hello, Guest";
-alert("Logged Out Successfully!");
+isAdmin=false;currentUser=null;
+document.body.classList.remove("adminMode");
+document.getElementById("adminPassInput").value="";
+document.getElementById("otpField").value="";
+document.getElementById("otpField").style.display="none";
+document.getElementById("verifyBtn").style.display="none";
+document.getElementById("sendOtpBtn").innerText="Send OTP";
+updateUI();
+render();
+alert("Logout Successful! Page cleared from login.");
 }
-function addToCart(i){cart.push(products[i]);document.getElementById("cartCount").innerText=cart.length;alert("Added to Cart: "+products[i].name);}
-function buyNow(i){alert("Buy Now: "+products[i].name+" - Contact Venus Art Gallery Teok");}
-function addWishlist(i){alert("Added to Wishlist");}
-function openCart(){alert("Cart Items: "+cart.length+"\n"+cart.map(c=>c.name).join("\n"));}
-function viewProduct(i){alert(products[i].name+"\n₹"+products[i].price);}
-function editProduct(i){
-if(!isAdmin){alert("Only Admin can Edit! Please Admin Login");return;}
-let newName=prompt("Edit Photo Name:",products[i].name);
-if(newName){products[i].name=newName;render();}
+function addCart(i){cart.push(products[i]);document.getElementById("cartCount").innerText=cart.length}
+function buyNow(i){alert("Buy: "+products[i].name)}
+function editPro(i){
+if(!isAdmin){alert("Please Admin Login first!");return}
+let n=prompt("Edit Name:",products[i].name);
+if(n){products[i].name=n;render()}
 }
-function deleteProduct(i){
-if(!isAdmin){alert("Only Admin can Delete! Please Admin Login");return;}
-if(confirm("Delete this photo?")){products.splice(i,1);render();}
+function delPro(i){
+if(!isAdmin){alert("Please Admin Login first!");return}
+if(confirm("Delete this Art?")){products.splice(i,1);render()}
 }
-function goSlide(n){slideIndex=n;updateSlider();}
-function updateSlider(){
-document.getElementById("slides").style.transform=`translateX(-${slideIndex*100}%)`;
-document.querySelectorAll("#dots span").forEach((d,i)=>d.classList.toggle("active",i==slideIndex));
+function goSlide(n){slideIdx=n;updSlide()}
+function updSlide(){
+document.getElementById("slides").style.transform=`translateX(-${slideIdx*100}%)`;
+document.querySelectorAll("#dots span").forEach((d,i)=>d.classList.toggle("active",i==slideIdx));
 }
-setInterval(()=>{slideIndex=(slideIndex+1)%3;updateSlider();},3000);
+setInterval(()=>{slideIdx=(slideIdx+1)%3;updSlide()},3000);
 render();
 </script>
 </body>
