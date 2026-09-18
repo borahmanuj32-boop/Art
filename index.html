@@ -19,7 +19,7 @@ body{background:#f1f3f6}
 #userLabel{color:#ffe500;font-size:11px;display:none}
 .sideMenu{position :fixed;top:0;left:-310px;width:290px;height:100%;background:#fff;z-index:2000;transition:.3s;overflow:auto}
 .sideMenu.open{left:0}
-.overlay{position:fixed;inset:0;background:re ba(0,0,0,.5);z-index:1500;display:none}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1500;display:none}
 .overlay.show{display:block}
 .sideHead{background:#2874f0;color:#fff;padding:15px;display:flex;justify-content:space-between}
 .sideUser{background:#0d47a1;color:#fff;padding:12px;font-size:13px}
@@ -83,6 +83,8 @@ body.adminMode .addBtn{display:block!important}
 <div class="productGrid" id="productGrid"></div>
 <div class="footer"><h2>VENUS ART GALLERY TEOK</h2><p>Design - Manuj venus</p><p>Phone - <a href="tel:9101573700" style="color:#4da6ff">9101573700</a></p><p>Copyright - VENUS ART GALLERY TEOK</p><div style="margin-top:12px;border-top:1px solid #333;padding-top:10px;font-size:12px;color:#aaa">WhatsApp Order: 9101573700</div></div>
 <div class="toast" id="toast"></div>
+
+
 <button class="addBtn" onclick="addNewSlide()">+ Add Slide</button>
 <button class="addBtn" style="bottom:120px" onclick="addNewArt()">+ Add Art</button>
 <div class="adminFab" onclick="openAdmin()">⚙️</div>
@@ -118,8 +120,9 @@ function confirmOrder(i){let p=products[i];let n=document.getElementById("cName"
 function orderWA(){let t=0;let names=cart.map(c=>{t+=parseInt(c.price);return c.name}).join(", ");let msg=`Hello VENUS ART%0A🎨 ${names}%0A💰 Total: ₹${t}`;window.open(`https://wa.me/${WA}?text=${msg}`,"_blank");}
 function editPro(i){if(!isAdmin)return;let n=prompt("Name:",products[i].name);if(n)products[i].name=n;let pr=prompt("Price:",products[i].price);if(pr)products[i].price=pr;render();}
 function delPro(i){if(!isAdmin)return;if(confirm("Delete?")){products.splice(i,1);render();}}
-function editSlide(i){if(!isAdmin)return;let u=prompt("New URL:",slidesData[i]);if(u){slidesData[i]=u;renderSlides();}}
-function delSlide(i){if(!isAdmin)return;if(slidesData.length==1){alert("1 needed");return}if(confirm("Delete?")){slidesData.splice(i,1);if(slideIdx>=slidesData.length)slideIdx=0;renderSlides();}}
+function editSlide(i){if(!isAdmin)return;let inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.onchange=e=>{let r=new FileReader();r.onload=ev=>{slidesData[i]=ev.target.result;renderSlides();showToast("Slide Edit হ'ল!");};r.readAsDataURL(e.target.files[0]);};inp.click();}
+function delSlide(i){if(!isAdmin)return;if(slidesData.length==1){alert("1 needed");return}if(confirm("Delete?")){slidesData.splice(i,1);renderSlides();}}
+
 function addNewSlide(){
 if(!isAdmin)return;
 let inp=document.createElement('input');
@@ -147,7 +150,8 @@ r.readAsDataURL(e.target.files[0]);
 };
 inp.click();
 }
-  unction goSlide(n){slideIdx=n;updSlide()}
+ function goSlide(n){slideIdx=n;updSlide();}
+
 function updSlide(){document.getElementById("slides").style.transform=`translateX(-${slideIdx*100}%)`;document.querySelectorAll("#dots span").forEach((d,i)=>d.classList.toggle("active",i==slideIdx))}
 setInterval(()=>{slideIdx=(slideIdx+1)%slidesData.length;updSlide()},4000);
 renderSlides();render();
